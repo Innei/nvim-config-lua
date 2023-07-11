@@ -64,29 +64,45 @@ return {
     end,
   },
 
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = { eslint = {} },
-      setup = {
-        eslint = function()
-          require("lazyvim.util").on_attach(function(client)
-            if client.name == "eslint" then
-              client.server_capabilities.documentFormattingProvider = true
-            elseif client.name == "tsserver" then
-              client.server_capabilities.documentFormattingProvider = false
-            end
-          end)
-        end,
-      },
-    },
-  },
-
+  -- https://www.lazyvim.org/configuration/recipes#use-eslint-for-fix-on-save-and-prettier-for-formatting
+  -- Add Eslint and use it for formatting
+  -- If your project is using eslint with eslint-plugin-prettier, then this will automatically fix eslint errors and format with prettier on save. Important: make sure not to add prettier to null-ls, otherwise this won't work!
   -- {
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   opts = function(_, opts)
-  --     local nls = require("null-ls")
-  --     -- table.insert(opts.source, nls.builtins.completion.spell)
-  --   end,
-  -- }
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     servers = { eslint = {} },
+  --     setup = {
+  --       eslint = function()
+  --         require("lazyvim.util").on_attach(function(client)
+  --           if client.name == "eslint" then
+  --             client.server_capabilities.documentFormattingProvider = true
+  --           elseif client.name == "tsserver" then
+  --             client.server_capabilities.documentFormattingProvider = false
+  --           end
+  --         end)
+  --       end,
+  --     },
+  --   },
+  -- },
+  {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      table.insert(opts.ensure_installed, "proselint")
+      table.insert(opts.ensure_installed, "write-good")
+      table.insert(opts.ensure_installed, "alex")
+    end,
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      opts.sources = vim.list_extend(opts.sources, {
+        nls.builtins.diagnostics.proselint,
+        nls.builtins.diagnostics.write_good,
+        nls.builtins.diagnostics.alex,
+        nls.builtins.code_actions.proselint,
+      })
+      -- table.insert(opts.source, nls.builtins.completion.spell)
+    end,
+  },
 }

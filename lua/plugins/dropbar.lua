@@ -1,5 +1,5 @@
 -- nvim >= 0.10.0
-if true then
+if not vim.fn.has("nvim-0.10") then
   return {}
 end
 
