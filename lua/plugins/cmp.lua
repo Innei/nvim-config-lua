@@ -50,7 +50,9 @@ return {
         ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
 
         -- disable cr
-        ["cr"] = cmp.fallback(),
+        ["<CR>"] = cmp.mapping(function(fallback)
+          fallback()
+        end),
       })
     end,
   },

@@ -21,9 +21,15 @@ return {
       vim.keymap.set("n", "[c", function()
         tscontext.go_to_context()
       end, { silent = true })
-      vim.api.nvim_set_option_value("foldmethod", "expr", {})
-      vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
-      vim.cmd("set nofoldenable")
+      -- vim.api.nvim_set_option_value("foldmethod", "expr", {})
+      -- vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
+      -- vim.cmd("set nofoldenable")
+      --
+      vim.o.indentexpr = ""
+      vim.o.foldmethod = "indent"
+      vim.o.foldlevel = 99
+      vim.o.foldenable = true
+      vim.o.foldlevelstart = 99
     end,
   },
 }
