@@ -2,7 +2,10 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter-context",
+
     config = function()
+      require("nvim-ts-autotag").setup()
+
       local tscontext = require("treesitter-context")
       tscontext.setup({
         enable = true,
