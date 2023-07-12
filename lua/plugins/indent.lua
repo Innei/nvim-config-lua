@@ -8,7 +8,7 @@ return {
           enable = true,
           use_treesitter = true,
           style = {
-            { fg = "#806d9c" },
+            { fg = "#F596AA" },
           },
         },
         indent = {
