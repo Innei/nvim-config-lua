@@ -1,11 +1,26 @@
 return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      opts.incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<CR>",
+          node_incremental = "<CR>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
+        },
+      }
+    end,
+  },
 
   {
     "nvim-treesitter/nvim-treesitter-context",
 
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
     config = function()
-      require("nvim-ts-autotag").setup()
-
       local tscontext = require("treesitter-context")
       tscontext.setup({
         enable = true,
@@ -21,9 +36,9 @@ return {
         zindex = 20, -- The Z-index of the context window
         on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
       })
-      vim.keymap.set("n", "[c", function()
-        tscontext.go_to_context()
-      end, { silent = true })
+      -- vim.keymap.set("n", "[c", function()
+      --   tscontext.go_to_context()
+      -- end, { silent = true })
       -- vim.api.nvim_set_option_value("foldmethod", "expr", {})
       -- vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
       -- vim.cmd("set nofoldenable")
