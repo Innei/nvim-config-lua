@@ -24,7 +24,15 @@ local nmappings = {
     to = "<ESC>",
     mode = mode_i,
   },
-
+  {
+    from = "jk",
+    to = "<ESC>",
+    mode = mode_i,
+  },
+  {
+    from = "X",
+    to = "r",
+  },
   {
     from = "r",
     to = "<c-r>",
@@ -50,6 +58,29 @@ local nmappings = {
     from = "!",
     to = "%",
   },
+  {
+    from = "0",
+    to = "^",
+  },
+  {
+    from = ")",
+    to = "g_",
+  },
+  {
+    from = "p",
+    to = "P",
+    mode = mode_v,
+  },
+  {
+    from = "<M-left>",
+    to = "<ESC>bi",
+    mode = mode_i,
+  },
+  {
+    from = "<M-right>",
+    to = "<ESC>ea",
+    mode = mode_i,
+  },
   --
   --
   { from = "<leader>rc", to = ":e ~/.config/nvim/init.lua<CR>" },
@@ -71,14 +102,14 @@ local nmappings = {
     from = ".",
     to = "<c-i>",
   },
-  {
-    from = "tt",
-    to = ":Neotree focus<cr>",
-  },
-  {
-    from = "<c-b>",
-    to = ":Neotree toggle<cr>",
-  },
+  -- {
+  --   from = "tt",
+  --   to = ":Neotree focus<cr>",
+  -- },
+  -- {
+  --   from = "<c-b>",
+  --   to = ":Neotree toggle<cr>",
+  -- },
 }
 
 for _, mapping in ipairs(nmappings) do

@@ -8,6 +8,8 @@ return {
             -- Set the filetype of *.pn files to potion
             pn = "potion",
             env = "sh",
+            mts = "typescript",
+            mjs = "javascript",
           },
           complex = {
             -- Set the filetype of any full filename matching the regex to gitconfig
