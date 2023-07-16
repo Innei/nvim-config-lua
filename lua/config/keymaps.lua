@@ -72,6 +72,25 @@ local nmappings = {
     mode = mode_v,
   },
   {
+    from = "x",
+    to = '"_x',
+  },
+  {
+    from = "x",
+    to = '"_x',
+    mode = mode_v,
+  },
+  {
+    from = "c",
+    to = '"_c',
+  },
+  {
+    from = "c",
+    to = '"_c',
+    mode = mode_v,
+  },
+
+  {
     from = "<M-left>",
     to = "<ESC>bi",
     mode = mode_i,
