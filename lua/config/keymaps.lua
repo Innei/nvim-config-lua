@@ -100,6 +100,23 @@ local nmappings = {
     to = "<ESC>ea",
     mode = mode_i,
   },
+
+  -- undo
+  {
+    from = "<C-z>",
+    to = "<ESC>ua",
+    mode = mode_i,
+  },
+  {
+    from = " ",
+    to = " <C-g>u",
+    mode = mode_i,
+  },
+  {
+    from = "=",
+    to = "=<C-g>u",
+    mode = mode_i,
+  },
   --
   --
   { from = "<leader>rc", to = ":e ~/.config/nvim/init.lua<CR>" },
@@ -109,10 +126,6 @@ local nmappings = {
 
   -- plugin
   { from = "R", to = ":Joshuto<CR>" },
-  {
-    from = "<c-p>",
-    to = ":Telescope git_files<CR>",
-  },
   {
     from = ",",
     to = "<c-o>",

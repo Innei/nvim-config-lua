@@ -13,6 +13,9 @@ return {
       local luasnip = require("luasnip")
       local cmp = require("cmp")
 
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
@@ -52,9 +55,18 @@ return {
         ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
 
         -- disable cr
-        ["<CR>"] = cmp.mapping(function(fallback)
-          fallback()
-        end),
+        -- ["<CR>"] = cmp.mapping(function(fallback)
+        --   fallback()
+        -- end),
+        ["<CR>"] = cmp.mapping({
+          i = function(fallback)
+            if cmp.visible() then
+              cmp.confirm()
+            else
+              fallback()
+            end
+          end,
+        }),
       })
     end,
   },
