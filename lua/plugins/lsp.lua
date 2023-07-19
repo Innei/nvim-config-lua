@@ -1,5 +1,28 @@
 return {
   {
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      opts.diagnostics = {
+        underline = true,
+        update_in_insert = false,
+        virtual_text = false,
+        -- virtual_text = {
+        --   spacing = 4,
+        --   source = "if_many",
+        --   prefix = "●",
+        --   -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
+        --   -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
+        --   -- prefix = "icons",
+        -- },
+        severity_sort = true,
+      }
+
+      opts.inlay_hints = {
+        enabled = true,
+      }
+    end,
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = { "hrsh7th/cmp-emoji", "zbirenbaum/copilot.lua" },
     ---@param opts cmp.ConfigSchema
@@ -121,8 +144,13 @@ return {
         nls.builtins.diagnostics.write_good,
         nls.builtins.diagnostics.alex,
         nls.builtins.code_actions.proselint,
-        nls.builtins.diagnostics.cspell,
         nls.builtins.code_actions.cspell,
+        nls.builtins.diagnostics.cspell.with({
+          -- Force the severity to be HINT
+          diagnostics_postprocess = function(diagnostic)
+            diagnostic.severity = vim.diagnostic.severity.HINT
+          end,
+        }),
       })
       -- table.insert(opts.source, nls.builtins.completion.spell)
     end,

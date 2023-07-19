@@ -1,26 +1,41 @@
 return {
   {
-    "LazyVim/LazyVim",
-    opts = {
-      -- colorscheme = "github_dark",
-    },
-  },
-  {
-    enabled = false,
-    "projekt0n/github-nvim-theme",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
     config = function()
-      require("github-theme").setup({
-        options = {
-          transparent = true,
+      require("catppuccin").setup({
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
+        background = { -- :h background
+          light = "latte",
+          dark = "mocha",
+        },
+        transparent_background = true, -- disables setting the background color.
+        integrations = {
+          nvimtree = true,
+          neotree = true,
+          gitsigns = true,
+          illuminate = true,
+          bufferline = true,
+          telescope = true,
+          treesitter = true,
+          native_lsp = {
+            enabled = true,
+            underlines = {
+              errors = { "undercurl" },
+              hints = { "undercurl" },
+              warnings = { "undercurl" },
+              information = { "undercurl" },
+            },
+          },
+          -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
         },
       })
     end,
   },
   {
     "folke/tokyonight.nvim",
-    enabled = true,
+    enabled = false,
   },
   {
     "navarasu/onedark.nvim",
