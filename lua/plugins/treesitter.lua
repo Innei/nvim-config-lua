@@ -11,6 +11,15 @@ return {
           node_decremental = "<bs>",
         },
       }
+
+      local swap_ternary = require("plugin.swap_ternary")
+      vim.keymap.set("n", "<leader>sX", swap_ternary.swap_ternary, { noremap = true })
+
+      vim.o.indentexpr = ""
+      vim.o.foldmethod = "indent"
+      vim.o.foldlevel = 99
+      vim.o.foldenable = true
+      vim.o.foldlevelstart = 99
     end,
   },
 
@@ -36,18 +45,6 @@ return {
         zindex = 20, -- The Z-index of the context window
         on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
       })
-      -- vim.keymap.set("n", "[c", function()
-      --   tscontext.go_to_context()
-      -- end, { silent = true })
-      -- vim.api.nvim_set_option_value("foldmethod", "expr", {})
-      -- vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
-      -- vim.cmd("set nofoldenable")
-      --
-      vim.o.indentexpr = ""
-      vim.o.foldmethod = "indent"
-      vim.o.foldlevel = 99
-      vim.o.foldenable = true
-      vim.o.foldlevelstart = 99
     end,
   },
 }

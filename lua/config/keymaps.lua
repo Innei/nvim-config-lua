@@ -38,7 +38,6 @@ local nmappings = {
     to = "<c-r>",
   },
   --
-  { from = "<c-a>", to = "<ESC>A", mode = mode_i },
   {
     from = "<s-up>",
     to = "<ESC>:m .-2<CR>==gi",
@@ -126,6 +125,8 @@ local nmappings = {
 
   -- plugin
   { from = "R", to = ":Joshuto<CR>" },
+
+  -- map , .
   {
     from = ",",
     to = "<c-o>",
@@ -134,14 +135,16 @@ local nmappings = {
     from = ".",
     to = "<c-i>",
   },
-  -- {
-  --   from = "tt",
-  --   to = ":Neotree focus<cr>",
-  -- },
-  -- {
-  --   from = "<c-b>",
-  --   to = ":Neotree toggle<cr>",
-  -- },
+  {
+    from = ",",
+    to = "^",
+    mode = mode_v,
+  },
+  {
+    from = ".",
+    to = "g_",
+    mode = mode_v,
+  },
 }
 
 for _, mapping in ipairs(nmappings) do

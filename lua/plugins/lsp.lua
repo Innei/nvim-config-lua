@@ -53,6 +53,11 @@ return {
         ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
         ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
         ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+        ["<c-e>"] = cmp.mapping({
+          i = function(fallback)
+            fallback()
+          end,
+        }),
 
         -- disable cr
         -- ["<CR>"] = cmp.mapping(function(fallback)
@@ -104,6 +109,7 @@ return {
       table.insert(opts.ensure_installed, "proselint")
       table.insert(opts.ensure_installed, "write-good")
       table.insert(opts.ensure_installed, "alex")
+      table.insert(opts.ensure_installed, "cspell")
     end,
   },
   {
@@ -115,6 +121,8 @@ return {
         nls.builtins.diagnostics.write_good,
         nls.builtins.diagnostics.alex,
         nls.builtins.code_actions.proselint,
+        nls.builtins.diagnostics.cspell,
+        nls.builtins.code_actions.cspell,
       })
       -- table.insert(opts.source, nls.builtins.completion.spell)
     end,
