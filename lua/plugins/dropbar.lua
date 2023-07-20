@@ -5,13 +5,41 @@ end
 
 return {
   "Bekaboo/dropbar.nvim",
-  commit = "19011d96959cd40a7173485ee54202589760caae",
+  -- commit = "19011d96959cd40a7173485ee54202589760caae",
+  --
+  event = "VeryLazy",
+  keys = {
+    {
+      "<Leader>;",
+      function()
+        local api = require("dropbar.api")
+        api.pick()
+      end,
+      desc = "Pick from a list of options",
+    },
+    {
+      "[c",
+      function()
+        local api = require("dropbar.api")
+        api.goto_context_start()
+      end,
+      desc = "Go to the start of the current context",
+    },
+    {
+      "]c",
+      function()
+        local api = require("dropbar.api")
+        api.select_next_context()
+      end,
+      desc = "Go to the next context",
+    },
+  },
   config = function()
     local api = require("dropbar.api")
-    vim.keymap.set("n", "<Leader>;", api.pick)
-    vim.keymap.set("n", "[c", api.goto_context_start)
-    vim.keymap.set("n", "]c", api.select_next_context)
-
+    -- vim.keymap.set("n", "<Leader>;", api.pick)
+    -- vim.keymap.set("n", "[c", api.goto_context_start)
+    -- vim.keymap.set("n", "]c", api.select_next_context)
+    --
     local confirm = function()
       local menu = api.get_current_dropbar_menu()
       if not menu then

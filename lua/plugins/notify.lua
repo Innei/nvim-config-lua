@@ -33,6 +33,13 @@ return {
       table.insert(opts.routes, {
         filter = {
           event = "notify",
+          find = "Highlight group",
+        },
+        opts = { skip = true },
+      })
+      table.insert(opts.routes, {
+        filter = {
+          event = "notify",
           find = "no manual entry for",
         },
         opts = { skip = true },

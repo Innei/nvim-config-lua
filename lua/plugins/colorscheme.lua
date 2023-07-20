@@ -19,6 +19,10 @@ return {
           bufferline = true,
           telescope = true,
           treesitter = true,
+          treesitter_context = true,
+          mini = true,
+          flash = true,
+          rainbow_delimiters = true,
           native_lsp = {
             enabled = true,
             underlines = {

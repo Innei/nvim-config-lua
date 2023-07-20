@@ -145,8 +145,33 @@ local nmappings = {
     to = "g_",
     mode = mode_v,
   },
+
+  -- cursor move panel
+  {
+    from = "<leader><up>",
+    to = "<C-w>k",
+  },
+  {
+    from = "<leader><down>",
+    to = "<C-w>j",
+  },
+  {
+    from = "<leader><left>",
+    to = "<C-w>h",
+  },
+  {
+    from = "<leader><right>",
+    to = "<C-w>l",
+  },
+  -- for kitty mapping
+  -- {
+  --   from = "<M-D-f>",
+  --   to = "<ESC><Leader>cf",
+  --   mode = mode_i,
+  --   noremap = false,
+  -- },
 }
 
 for _, mapping in ipairs(nmappings) do
-  vim.keymap.set(mapping.mode or "n", mapping.from, mapping.to, { noremap = true })
+  vim.keymap.set(mapping.mode or "n", mapping.from, mapping.to, { noremap = mapping.noremap or true })
 end
