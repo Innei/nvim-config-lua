@@ -1,3 +1,39 @@
+local icons = {
+  Keyword = "󰌋",
+  Operator = "󰆕",
+
+  Text = "",
+  Value = "󰎠",
+  Constant = "󰏿",
+
+  Method = "",
+  Function = "󰊕",
+  Constructor = "",
+
+  Class = "",
+  Interface = "",
+  Module = "",
+
+  Variable = "",
+  Property = "󰜢",
+  Field = "󰜢",
+
+  Struct = "󰙅",
+  Enum = "",
+  EnumMember = "",
+
+  Snippet = "",
+
+  File = "",
+  Folder = "",
+
+  Reference = "󰈇",
+  Event = "",
+  Color = "",
+  Unit = "󰑭",
+  TypeParameter = "",
+}
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -67,6 +103,18 @@ return {
 
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+      opts.formatting.format = function(entry, item)
+        item.kind = icons[item.kind] or item.kind
+        item.menu = nil
+
+        local truncated = vim.fn.strcharpart(item.abbr, 0, 30)
+        if truncated ~= item.abbr then
+          item.abbr = truncated .. "…"
+        end
+
+        return item
+      end
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
