@@ -10,6 +10,12 @@ return {
           light = "latte",
           dark = "mocha",
         },
+
+        custom_highlights = function(colors)
+          return {
+            Visual = { fg = colors.fg, bg = colors.bg_visual },
+          }
+        end,
         transparent_background = true, -- disables setting the background color.
         integrations = {
           nvimtree = true,

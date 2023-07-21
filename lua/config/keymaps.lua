@@ -13,22 +13,23 @@ local nmappings = {
     to = ":",
     mode = mode_nv,
   },
-  { from = "Y", to = '"+y', mode = mode_v },
+  { from = "y", to = '"+y', mode = mode_v },
+  { from = "y", to = '"+y' },
   {
     from = "`",
     to = "~",
     mode = mode_nv,
   },
-  {
-    from = "jj",
-    to = "<ESC>",
-    mode = mode_i,
-  },
-  {
-    from = "jk",
-    to = "<ESC>",
-    mode = mode_i,
-  },
+  -- {
+  --   from = "jj",
+  --   to = "<ESC>",
+  --   mode = mode_i,
+  -- },
+  -- {
+  --   from = "jk",
+  --   to = "<ESC>",
+  --   mode = mode_i,
+  -- },
   {
     from = "X",
     to = "r",
@@ -51,7 +52,7 @@ local nmappings = {
 
   {
     from = "cw",
-    to = "ciw",
+    to = '"_ciw',
   },
   {
     from = "!",
@@ -170,6 +171,29 @@ local nmappings = {
   --   mode = mode_i,
   --   noremap = false,
   -- },
+  {
+    from = "<M-x>",
+    to = '"+d',
+    mode = mode_v,
+  },
+  {
+    from = "<M-x>",
+    to = "dd",
+  },
+  {
+    from = "<M-c>",
+    to = '"+y',
+    mode = mode_v,
+  },
+  {
+    from = "<M-z>",
+    to = "<ESC>ui",
+    mode = mode_i,
+  },
+  {
+    from = "<M-z>",
+    to = "u",
+  },
 }
 
 for _, mapping in ipairs(nmappings) do
