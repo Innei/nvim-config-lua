@@ -221,13 +221,13 @@ return {
         nls.builtins.diagnostics.write_good,
         nls.builtins.diagnostics.alex,
         nls.builtins.code_actions.proselint,
-        nls.builtins.code_actions.cspell,
-        nls.builtins.diagnostics.cspell.with({
-          -- Force the severity to be HINT
-          diagnostics_postprocess = function(diagnostic)
-            diagnostic.severity = vim.diagnostic.severity.HINT
-          end,
-        }),
+        -- nls.builtins.code_actions.cspell,
+        -- nls.builtins.diagnostics.cspell.with({
+        --   -- Force the severity to be HINT
+        --   diagnostics_postprocess = function(diagnostic)
+        --     diagnostic.severity = vim.diagnostic.severity.HINT
+        --   end,
+        -- }),
       })
       -- table.insert(opts.source, nls.builtins.completion.spell)
     end,

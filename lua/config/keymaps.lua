@@ -7,7 +7,7 @@ local mode_nv = { "n", "v" }
 local mode_v = { "v" }
 local mode_i = { "i" }
 local nmappings = {
-  { from = "Q", to = ":bd<CR>" },
+  -- { from = "Q", to = ":bd<CR>" },
   {
     from = ";",
     to = ":",
@@ -193,6 +193,10 @@ local nmappings = {
   {
     from = "<M-z>",
     to = "u",
+  },
+  {
+    from = "<M-p>",
+    to = "<ESC>:Telescope<CR>",
   },
 }
 
