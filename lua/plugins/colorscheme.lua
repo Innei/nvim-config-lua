@@ -13,7 +13,7 @@ return {
 
         custom_highlights = function(colors)
           return {
-            Visual = { fg = colors.fg, bg = colors.bg_visual },
+            Visual = { fg = colors.text, bg = colors.overlay0 },
           }
         end,
         transparent_background = true, -- disables setting the background color.

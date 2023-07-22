@@ -1,6 +1,7 @@
 return {
   {
     "shellRaining/hlchunk.nvim",
+    event = { "UIEnter" },
     init = function()
       vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
       require("hlchunk").setup({
@@ -13,13 +14,14 @@ return {
         },
         indent = {
           chars = { "│" },
-          use_treesitter = false,
+          use_treesitter = true,
         },
         blank = {
           enable = false,
         },
         line_num = {
           use_treesitter = true,
+          style = "#F596AA",
         },
       })
     end,

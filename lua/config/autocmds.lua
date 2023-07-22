@@ -5,10 +5,10 @@
 
 local swap_ternary = require("plugin.swap_ternary")
 vim.keymap.set("n", "<leader>sX", swap_ternary.swap_ternary, { noremap = true })
-
-vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-  pattern = { "*" },
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
+--
+-- vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+--   pattern = { "*" },
+--   callback = function()
+--     vim.lsp.buf.format()
+--   end,
+-- })
