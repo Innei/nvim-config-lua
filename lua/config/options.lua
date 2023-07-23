@@ -8,5 +8,6 @@ opt.wrap = true
 opt.clipboard = ""
 
 opt.spelllang = "en,cjk"
-vim.opt.spell = true
+-- vim.opt.spell = true
 opt.spelloptions = "camel"
+opt.scrolloff = 5

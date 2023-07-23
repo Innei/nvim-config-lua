@@ -13,12 +13,18 @@ return {
     event = "BufRead",
     config = function()
       vim.cmd([[
-let g:gitblame_message_when_not_committed = '     Oh please, commit this !'
-" let g:gitblame_highlight_group = "Question"
-" let g:gitblame_virtual_text_column = 120
-let g:gitblame_date_format = '%r'
+  let g:gitblame_message_when_not_committed = 'Oh please, commit this !'
+  let g:gitblame_highlight_group = "Comment"
+  let g:gitblame_virtual_text_column = 80
+  let g:gitblame_date_format = '%r'
 
-      ]])
+        ]])
     end,
   },
+  -- {
+  --   "lewis6991/gitsigns.nvim",
+  --   opts = function(_, opt)
+  --     opt.current_line_blame = true
+  --   end,
+  -- },
 }

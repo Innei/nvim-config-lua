@@ -80,6 +80,7 @@ return {
         --   -- prefix = "icons",
         -- },
         severity_sort = true,
+        signs = false,
       }
 
       opts.inlay_hints = {
@@ -206,21 +207,21 @@ return {
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
-      table.insert(opts.ensure_installed, "proselint")
-      table.insert(opts.ensure_installed, "write-good")
-      table.insert(opts.ensure_installed, "alex")
-      table.insert(opts.ensure_installed, "cspell")
+      -- table.insert(opts.ensure_installed, "proselint")
+      -- table.insert(opts.ensure_installed, "write-good")
+      -- table.insert(opts.ensure_installed, "alex")
+      -- table.insert(opts.ensure_installed, "cspell")
     end,
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
-      local nls = require("null-ls")
+      -- local nls = require("null-ls")
       opts.sources = vim.list_extend(opts.sources, {
-        nls.builtins.diagnostics.proselint,
-        nls.builtins.diagnostics.write_good,
-        nls.builtins.diagnostics.alex,
-        nls.builtins.code_actions.proselint,
+        -- nls.builtins.diagnostics.proselint,
+        -- nls.builtins.diagnostics.write_good,
+        -- nls.builtins.diagnostics.alex,
+        -- nls.builtins.code_actions.proselint,
         -- nls.builtins.code_actions.cspell,
         -- nls.builtins.diagnostics.cspell.with({
         --   -- Force the severity to be HINT
@@ -231,5 +232,21 @@ return {
       })
       -- table.insert(opts.source, nls.builtins.completion.spell)
     end,
+  },
+  {
+    "nvimdev/lspsaga.nvim",
+    event = "BufRead",
+    config = function()
+      require("lspsaga").setup({
+        ui = {
+          code_action = "💡",
+        },
+      })
+      vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc")
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter", -- optional
+      "nvim-tree/nvim-web-devicons", -- optional
+    },
   },
 }

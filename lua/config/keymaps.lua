@@ -198,6 +198,16 @@ local nmappings = {
     from = "<M-p>",
     to = "<ESC>:Telescope<CR>",
   },
+  {
+    from = "<M-backspace>",
+
+    to = "<C-w>",
+    mode = mode_i,
+  },
+  {
+    from = "<M-.>",
+    to = "<Esc><cmd>lua vim.lsp.buf.code_action()<CR>",
+  },
 }
 
 for _, mapping in ipairs(nmappings) do

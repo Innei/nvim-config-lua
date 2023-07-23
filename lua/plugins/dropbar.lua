@@ -18,6 +18,14 @@ return {
       desc = "Pick from a list of options",
     },
     {
+      "<Leader>cc",
+      function()
+        local api = require("dropbar.api")
+        api.pick()
+      end,
+      desc = "Pick from a list of options",
+    },
+    {
       "[c",
       function()
         local api = require("dropbar.api")
