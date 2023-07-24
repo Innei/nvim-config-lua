@@ -2,6 +2,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
+    event = "VeryLazy",
     keys = {
       {
         "<leader>fe",
@@ -23,6 +24,7 @@ return {
       { "<C-b>", ":Neotree toggle<CR>", desc = "Explorer NeoTree toggle (cwd)", remap = true },
     },
     opts = function(_, opts)
+      vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
       opts.filesystem = {
         filtered_items = {
           visible = true, -- when true, they will just be displayed differently than normal items
