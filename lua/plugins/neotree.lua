@@ -46,6 +46,11 @@ return {
           never_show_by_pattern = { -- uses glob style patterns
             --".null-ls_*",
           },
+          follow_current_file = {
+            enabled = true, -- This will find and focus the file in the active buffer every time
+            --               -- the current file is changed while the tree is open.
+            leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+          },
         },
       }
 
@@ -116,6 +121,13 @@ return {
         ["<"] = "prev_source",
         [">"] = "next_source",
       }
+
+      vim.api.nvim_create_autocmd("VimEnter", {
+        command = "set nornu nonu | Neotree toggle",
+      })
+      vim.api.nvim_create_autocmd("BufEnter", {
+        command = "set rnu nu",
+      })
     end,
   },
 }

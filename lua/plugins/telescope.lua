@@ -4,11 +4,51 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim", enabled = vim.fn.executable("make") == 1, build = "make" },
+      { "folke/which-key.nvim" },
     },
     config = function(_, opts)
-      vim.api.nvim_set_keymap("n", "<Leader>fw", "<cmd>Telescope grep_string<cr>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("n", "<C-f>", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("n", "<C-p>", "<cmd>Telescope fd<cr>", { noremap = true, silent = true })
+      -- vim.api.nvim_set_keymap("n", "<Leader>fw", "<cmd>Telescope grep_string<cr>", { noremap = true, silent = true })
+      -- vim.api.nvim_set_keymap("n", "<C-f>", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
+      -- vim.api.nvim_set_keymap("n", "<C-p>", "<cmd>Telescope fd<cr>", { noremap = true, silent = true })
+
+      local wk = require("which-key")
+
+      wk.register({
+        ["<leader>t"] = {
+          name = "telescope",
+          f = { "<cmd>Telescope find_files<cr>", "find files" },
+          b = { "<cmd>Telescope buffers<cr>", "buffers" },
+          h = { "<cmd>Telescope help_tags<cr>", "help tags" },
+          m = { "<cmd>Telescope marks<cr>", "marks" },
+          r = { "<cmd>Telescope registers<cr>", "registers" },
+          t = { "<cmd>Telescope treesitter<cr>", "treesitter" },
+          w = { "<cmd>Telescope grep_string<cr>", "grep string" },
+          o = { "<cmd>Telescope oldfiles<cr>", "oldfiles" },
+          g = {
+            name = "git",
+            b = { "<cmd>Telescope git_branches<cr>", "branches" },
+            c = { "<cmd>Telescope git_commits<cr>", "commits" },
+            s = { "<cmd>Telescope git_status<cr>", "status" },
+            h = { "<cmd>Telescope git_stash<cr>", "stash" },
+            p = { "<cmd>Telescope git_files<cr>", "git files" },
+          },
+        },
+
+        ["<leader>fw"] = {
+
+          "<cmd>Telescope grep_string<cr>",
+          "grep string",
+        },
+        ["<c-f>"] = {
+
+          "<cmd>Telescope live_grep<cr>",
+          "live grep",
+        },
+        ["<c-p>"] = {
+          "<cmd>Telescope fd<cr>",
+          "find file",
+        },
+      })
 
       local actions = require("telescope.actions")
       require("telescope").setup({

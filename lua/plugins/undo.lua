@@ -1,7 +1,8 @@
 return {
   {
     "mbbill/undotree",
-    keys = { "L" },
+    -- keys = { "L" },
+    event = "BufRead",
     config = function()
       vim.cmd([[
 noremap L :UndotreeToggle<CR>
