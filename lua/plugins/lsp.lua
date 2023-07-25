@@ -200,6 +200,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
+      table.insert(opts.ensure_installed, "json-lsp")
       -- table.insert(opts.ensure_installed, "proselint")
       -- table.insert(opts.ensure_installed, "write-good")
       -- table.insert(opts.ensure_installed, "alex")
@@ -241,5 +242,12 @@ return {
       "nvim-treesitter/nvim-treesitter", -- optional
       "nvim-tree/nvim-web-devicons", -- optional
     },
+  },
+
+  -- configure lsp easy
+  {
+    "tamago324/nlsp-settings.nvim",
+    cmd = "LspSettings",
+    opts = {},
   },
 }

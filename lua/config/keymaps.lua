@@ -207,6 +207,7 @@ local nmappings = {
     from = "<M-.>",
     to = "<Esc><cmd>lua vim.lsp.buf.code_action()<CR>",
   },
+  { from = "<c-a>", to = "gg<s-v>G" },
 }
 
 for _, mapping in ipairs(nmappings) do

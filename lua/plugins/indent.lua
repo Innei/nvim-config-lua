@@ -9,7 +9,7 @@ return {
           enable = true,
           use_treesitter = true,
           style = {
-            { fg = "#F596AA" },
+            { fg = "#91bef0" },
           },
         },
         indent = {
@@ -39,7 +39,7 @@ return {
         },
         line_num = {
           use_treesitter = true,
-          style = "#F596AA",
+          style = "#91bef0",
         },
       })
     end,
