@@ -26,3 +26,22 @@
 -- })
 
 vim.api.nvim_create_user_command("Qa", "qa", { bang = true })
+vim.api.nvim_create_user_command("Q", "q", { bang = true })
+vim.api.nvim_create_user_command("W", "w", { bang = true })
+vim.api.nvim_create_user_command("Wq", "wq", { bang = true })
+vim.api.nvim_create_user_command("Wqa", "wqa", { bang = true })
+vim.api.nvim_create_user_command("WQ", "wq", { bang = true })
+vim.api.nvim_create_user_command("Wq", "wq", { bang = true })
+
+-- " toggle number releative or absolute
+vim.api.nvim_create_autocmd("InsertEnter", {
+  callback = function()
+    vim.opt.relativenumber = false
+  end,
+})
+
+vim.api.nvim_create_autocmd("InsertLeave", {
+  callback = function()
+    vim.opt.relativenumber = true
+  end,
+})

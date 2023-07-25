@@ -13,8 +13,7 @@ local nmappings = {
     to = ":",
     mode = mode_nv,
   },
-  { from = "y", to = '"+y', mode = mode_v },
-  { from = "y", to = '"+y' },
+  { from = "y", to = '"+y', mode = mode_nv },
   {
     from = "`",
     to = "~",
@@ -213,3 +212,9 @@ local nmappings = {
 for _, mapping in ipairs(nmappings) do
   vim.keymap.set(mapping.mode or "n", mapping.from, mapping.to, { noremap = mapping.noremap or true })
 end
+
+vim.keymap.del({ "n", "x" }, "j")
+vim.keymap.del({ "n", "x" }, "k")
+
+vim.api.nvim_set_keymap("n", "j", "<Plug>(accelerated_jk_gj)", {})
+vim.api.nvim_set_keymap("n", "k", "<Plug>(accelerated_jk_gk)", {})
