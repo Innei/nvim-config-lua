@@ -1,0 +1,59 @@
+{
+  "import": {
+    "scope": "javascript,typescript,typescriptreact",
+    "prefix": "im",
+    "body": ["import { $1 } from '$2';"],
+    "description": "Import a module"
+  },
+  "export-all": {
+    "scope": "javascript,typescript,typescriptreact",
+    "prefix": "ex",
+    "body": ["export * from '$2';"],
+    "description": "Export a module"
+  },
+  "require": {
+    "prefix": "re",
+    "body": "require('$1')"
+  },
+  "Print to console": {
+    "prefix": "log",
+    "body": ["console.log($1)", "$2"],
+    "description": "Log output to console"
+  },
+  "Destructure Object": {
+    "prefix": "cc",
+    "body": "const { $2 } = $1"
+  },
+  "import module": {
+    "prefix": ["im", "imp", "ii"],
+    "body": "import {} from '$1'",
+    "description": "自动导入"
+  },
+  "header comment": {
+    "prefix": "hco",
+    "body": ["/**", "* $0", "* @author Innei <https://innei.ren>", "*/"]
+  },
+  "Define a FC": {
+    "prefix": "fc",
+    "body": [
+      "interface $1Props {",
+      "",
+      "}",
+      "",
+      "const $1: FC<$1Props> = (props) => {",
+      "$2",
+      "return null",
+      "}"
+    ]
+  },
+  "import scss module index": {
+    "prefix": "importsc",
+    "body": ["import styles from './${1:index}.module.scss'", "$2"],
+    "description": "Import SCSS module"
+  },
+  "import css module index": {
+    "prefix": "importcs",
+    "body": ["import styles from './${1:index}.module.css'", "$2"],
+    "description": "Import CSS module"
+  }
+}

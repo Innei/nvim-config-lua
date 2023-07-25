@@ -1,7 +1,27 @@
 return {
   {
     "rafamadriz/friendly-snippets",
-    opts = function(_, opts)
+    enabled = false,
+  },
+  -- {
+  --   "Innei/friendly-snippets-fork",
+  --   -- event = "InsertEnter",
+  --   config = function()
+  --     -- require("luasnip.loaders.from_vscode").lazy_load()
+  --     require("luasnip.loaders.from_vscode").lazy_load({
+  --       paths = { "~/.config/nvim/snippets" },
+  --     })
+  --     require("luasnip").filetype_extend("typescript", { "javascript" })
+  --     require("luasnip").filetype_extend("javascriptreact", { "javascript" })
+  --     require("luasnip").filetype_extend("typescriptreact", { "javascript" })
+  --   end,
+  -- },
+  {
+    "L3MON4D3/LuaSnip",
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load({
+        paths = { "~/.config/nvim/snippets" },
+      })
       require("luasnip").filetype_extend("typescript", { "javascript" })
       require("luasnip").filetype_extend("javascriptreact", { "javascript" })
       require("luasnip").filetype_extend("typescriptreact", { "javascript" })
