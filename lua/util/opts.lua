@@ -6,8 +6,8 @@ M.float = {
   border = "rounded",
   style = "minimal",
   size = {
-    width = 0.8,
-    height = 0.8,
+    width = 0.1,
+    height = 0.1,
   },
 }
 
@@ -34,7 +34,7 @@ M.float.get_size = function(width, height)
 end
 
 M.win = {
-  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:CursorLine,Search:Search",
+  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:Search",
 }
 
 return M
