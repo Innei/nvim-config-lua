@@ -7,6 +7,8 @@ return {
         render = "compact",
         stages = "fade_in_slide_out",
         timeout = 5000,
+        max_width = 80,
+        max_height = 20,
       })
     end,
     init = function()

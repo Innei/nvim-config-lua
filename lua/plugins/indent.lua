@@ -6,12 +6,14 @@ return {
       vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
 
       require("hlchunk").setup({
+        exclude_filetype = require("util.ft").exclude_ft_table,
         chunk = {
           enable = true,
           use_treesitter = true,
           style = {
             { fg = "#91bef0" },
           },
+          exclude_filetype = require("util.ft").exclude_ft_table,
         },
         indent = {
           chars = { "│" },
@@ -26,6 +28,7 @@ return {
           enable = false,
         },
         line_num = {
+          exclude_filetype = require("util.ft").exclude_ft_table,
           use_treesitter = true,
           style = "#91bef0",
         },

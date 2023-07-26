@@ -7,6 +7,13 @@ local mode_nv = { "n", "v" }
 local mode_v = { "v" }
 local mode_i = { "i" }
 local nmappings = {
+  -- page scroll
+  {
+
+    from = "<c-i>",
+    to = "<c-d>",
+    mode = mode_nv,
+  },
   -- { from = "Q", to = ":bd<CR>" },
   {
     from = ";",
@@ -117,14 +124,7 @@ local nmappings = {
     mode = mode_i,
   },
   --
-  --
   { from = "<leader>rc", to = ":e ~/.config/nvim/init.lua<CR>" },
-  { from = "<leader>rv", to = ":e .vim.lua<CR>" },
-  { from = ",v", to = "v%" },
-  { from = "<leader><cr>", to = ":nohlsearch<CR>" },
-
-  -- plugin
-  { from = "R", to = ":Joshuto<CR>" },
 
   -- map , .
   {
