@@ -34,7 +34,7 @@ M.float.get_size = function(width, height)
 end
 
 M.win = {
-  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:Search",
+  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:ISelection,Search:Search",
 }
 
 return M

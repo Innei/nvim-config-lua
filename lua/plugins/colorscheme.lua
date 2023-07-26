@@ -12,11 +12,19 @@ return {
         },
 
         custom_highlights = function(colors)
+          local macchiato = require("catppuccin.palettes").get_palette("macchiato")
+
           return {
             Visual = { fg = colors.text, bg = colors.overlay0 },
+            CursorLine = { bg = macchiato.crust },
+            CursorIM = {
+              bg = colors.sky,
+              fg = colors.sky,
+            },
           }
         end,
         transparent_background = true, -- disables setting the background color.
+
         integrations = {
           nvimtree = true,
           neotree = true,
@@ -29,13 +37,14 @@ return {
           mini = true,
           flash = true,
           rainbow_delimiters = true,
+          -- cmp = true,
           native_lsp = {
             enabled = true,
             underlines = {
               errors = { "undercurl" },
               hints = { "undercurl" },
               warnings = { "undercurl" },
-              information = { "undercurl" },
+              information = { "underdotted" },
             },
           },
           -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)

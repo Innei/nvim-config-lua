@@ -11,6 +11,7 @@ return {
   {
     "f-person/git-blame.nvim",
     event = "BufRead",
+    enabled = false,
     config = function()
       vim.cmd([[
   let g:gitblame_message_when_not_committed = 'Oh please, commit this !'
@@ -21,10 +22,10 @@ return {
         ]])
     end,
   },
-  -- {
-  --   "lewis6991/gitsigns.nvim",
-  --   opts = function(_, opt)
-  --     opt.current_line_blame = true
-  --   end,
-  -- },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = function(_, opt)
+      opt.current_line_blame = true
+    end,
+  },
 }
