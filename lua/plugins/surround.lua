@@ -1,16 +1,5 @@
 return {
   {
-    "echasnovski/mini.pairs",
-    event = "VeryLazy",
-    opts = {},
-    enabled = false,
-  },
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {}, -- this is equalent to setup({}) function
-  },
-  {
     "echasnovski/mini.surround",
     opts = {
       mappings = {

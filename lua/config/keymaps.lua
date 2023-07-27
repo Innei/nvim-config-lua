@@ -119,6 +119,31 @@ local nmappings = {
     mode = mode_i,
   },
   {
+    from = "(",
+    to = "(<c-g>u",
+    mode = mode_i,
+  },
+  {
+    from = ")",
+    to = ")<C-g>u",
+    mode = mode_i,
+  },
+  {
+    from = "<",
+    to = "<<C-g>u",
+    mode = mode_i,
+  },
+  {
+    from = ">",
+    to = "><C-g>u",
+    mode = mode_i,
+  },
+  {
+    from = "/",
+    to = "/<C-g>u",
+    mode = mode_i,
+  },
+  {
     from = "=",
     to = "=<C-g>u",
     mode = mode_i,
