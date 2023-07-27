@@ -102,8 +102,8 @@ return {
       local luasnip = require("luasnip")
       local cmp = require("cmp")
 
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      -- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      -- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
       opts.formatting.format = function(entry, item)
         item.kind = icons[item.kind] or item.kind
@@ -249,6 +249,7 @@ return {
   -- configure lsp easy
   {
     "tamago324/nlsp-settings.nvim",
+    enabled = false,
     cmd = "LspSettings",
     opts = {},
   },

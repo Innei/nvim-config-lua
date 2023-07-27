@@ -22,6 +22,7 @@ M.exclude_ft_table = {
   toggleterm = true,
 
   noice = true,
+  text = true,
 }
 
 local exclude_ft_list = {}

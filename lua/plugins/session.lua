@@ -1,5 +1,6 @@
 return {
   "rmagatti/auto-session",
+  enabled = false,
   config = function()
     -- local function close_neo_tree()
     --   require("neo-tree.sources.manager").close_all()
