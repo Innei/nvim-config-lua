@@ -53,3 +53,14 @@ vim.api.nvim_create_user_command("Wq", "wq", { bang = true })
 --     vim.opt.relativenumber = true
 --   end,
 -- })
+--
+
+vim.cmd([[
+if !has('gui_running')
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=300
+    augroup END
+endif
+]])

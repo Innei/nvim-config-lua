@@ -6,7 +6,6 @@ return {
       vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
 
       require("hlchunk").setup({
-        exclude_filetype = require("util.ft").exclude_ft_table,
         chunk = {
           enable = true,
           use_treesitter = true,

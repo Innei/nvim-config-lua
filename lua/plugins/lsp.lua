@@ -146,7 +146,9 @@ return {
         ["<S-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<Esc>"] = cmp.mapping({
-          i = cmp.mapping.abort(),
+          i = function(fallback)
+            fallback()
+          end,
           -- c = cmp.mapping.close(),
           c = cmp.mapping.abort(),
         }),

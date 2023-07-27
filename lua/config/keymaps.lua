@@ -8,12 +8,12 @@ local mode_v = { "v" }
 local mode_i = { "i" }
 local nmappings = {
   -- page scroll
-  {
-
-    from = "<c-i>",
-    to = "<c-d>",
-    mode = mode_nv,
-  },
+  -- {
+  --
+  --   from = "<c-i>",
+  --   to = "<c-d>",
+  --   mode = mode_nv,
+  -- },
   -- { from = "Q", to = ":bd<CR>" },
   {
     from = ";",
