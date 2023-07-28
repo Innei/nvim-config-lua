@@ -63,6 +63,7 @@ local nmappings = {
   {
     from = "!",
     to = "%",
+    mode = mode_nv,
   },
   {
     from = "0",

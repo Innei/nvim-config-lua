@@ -7,10 +7,6 @@ return {
       { "folke/which-key.nvim" },
     },
     config = function(_, opts)
-      -- vim.api.nvim_set_keymap("n", "<Leader>fw", "<cmd>Telescope grep_string<cr>", { noremap = true, silent = true })
-      -- vim.api.nvim_set_keymap("n", "<C-f>", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
-      -- vim.api.nvim_set_keymap("n", "<C-p>", "<cmd>Telescope fd<cr>", { noremap = true, silent = true })
-
       local wk = require("which-key")
 
       wk.register({

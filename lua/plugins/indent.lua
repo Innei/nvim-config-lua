@@ -17,9 +17,9 @@ return {
         indent = {
           chars = { "│" },
           use_treesitter = false,
-          -- style = {
-          --   "#000000",
-          -- },
+          style = {
+            "#4F709C",
+          },
 
           exclude_filetype = require("util.ft").exclude_ft_table,
         },
