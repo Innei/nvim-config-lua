@@ -3,7 +3,7 @@ return {
     "tomasky/bookmarks.nvim",
     event = "BufRead",
     config = function()
-      vim.opt.signcolumn = "auto:1-2"
+      vim.opt.signcolumn = "yes:2"
       require("bookmarks").setup({
         save_file = vim.fn.expand("$HOME/.local/share/nvim/bookmarks"), -- bookmarks save file path
         keywords = {

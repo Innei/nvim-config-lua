@@ -46,12 +46,12 @@ local nmappings = {
   },
   --
   {
-    from = "<s-up>",
+    from = "<M-up>",
     to = "<ESC>:m .-2<CR>==gi",
     mode = mode_i,
   },
   {
-    from = "<s-down>",
+    from = "<M-down>",
     to = "<ESC>:m .+1<CR>==gi",
     mode = mode_i,
   },
@@ -172,6 +172,42 @@ local nmappings = {
     mode = mode_v,
   },
 
+  -- vscode like mapping
+  {
+
+    from = "<S-up>",
+    to = "Vk",
+  },
+  {
+    from = "<S-down>",
+    to = "Vj",
+  },
+  {
+    from = "<S-left>",
+    to = "vh",
+  },
+  {
+    from = "<S-right>",
+    to = "vl",
+  },
+  {
+    from = "<S-up>",
+    to = "k",
+    mode = mode_v,
+  },
+  {
+    from = "<S-down>",
+    to = "j",
+    mode = mode_v,
+  },
+  {
+    from = "<S-left>",
+    to = "h",
+  },
+  {
+    from = "<S-right>",
+    to = "l",
+  },
   -- cursor move panel
   {
     from = "<leader><up>",
@@ -189,13 +225,7 @@ local nmappings = {
     from = "<leader><right>",
     to = "<C-w>l",
   },
-  -- for kitty mapping
-  -- {
-  --   from = "<M-D-f>",
-  --   to = "<ESC><Leader>cf",
-  --   mode = mode_i,
-  --   noremap = false,
-  -- },
+  -- vscode like mapping based on kitty keymap mapping
   {
     from = "<M-x>",
     to = '"+d',
