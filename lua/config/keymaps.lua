@@ -202,6 +202,10 @@ local nmappings = {
     mode = mode_v,
   },
   {
+    from = "<M-d>",
+    to = "viw",
+  },
+  {
     from = "<M-x>",
     to = "dd",
   },

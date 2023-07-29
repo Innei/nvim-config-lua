@@ -33,6 +33,14 @@ vim.api.nvim_create_user_command("Wqa", "wqa", { bang = true })
 vim.api.nvim_create_user_command("WQ", "wq", { bang = true })
 vim.api.nvim_create_user_command("Wq", "wq", { bang = true })
 
+vim.fn.system(string.format("kitty @ set-tab-title %q", vim.fs.basename(vim.fn.getcwd())))
+vim.api.nvim_create_autocmd({ "DirChanged" }, {
+  pattern = "*",
+  callback = function()
+    vim.fn.system(string.format("kitty @ set-tab-title %q", vim.fs.basename(vim.fn.getcwd())))
+  end,
+})
+
 -- local hasNumber = false
 -- -- " toggle number releative or absolute
 -- vim.api.nvim_create_autocmd("InsertEnter", {
