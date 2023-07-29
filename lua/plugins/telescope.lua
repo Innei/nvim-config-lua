@@ -5,6 +5,8 @@ return {
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim", enabled = vim.fn.executable("make") == 1, build = "make" },
       { "folke/which-key.nvim" },
+      { "debugloop/telescope-undo.nvim" },
+      { "nvim-lua/plenary.nvim" },
     },
     config = function(_, opts)
       local wk = require("which-key")
@@ -56,22 +58,28 @@ return {
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
           },
-          extensions = {
-            file_browser = {
-              theme = "ivy",
-              -- disables netrw and use telescope-file-browser in its place
-              hijack_netrw = true,
-              mappings = {
-                ["i"] = {
-                  -- your custom insert mode mappings
-                },
-                ["n"] = {
-                  -- your custom normal mode mappings
-                },
+          file_browser = {
+            -- theme = "ivy",
+            -- disables netrw and use telescope-file-browser in its place
+            mappings = {
+              ["i"] = {
+                -- your custom insert mode mappings
+              },
+              ["n"] = {
+                -- your custom normal mode mappings
               },
             },
           },
+          undo = {
+            use_delta = true,
+            side_by_side = true,
+            layout_strategy = "vertical",
+            layout_config = {
+              preview_height = 0.8,
+            },
+          },
         },
+
         defaults = {
           git_worktrees = vim.g.git_worktrees,
           path_display = { "truncate" },
@@ -97,6 +105,7 @@ return {
       })
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("file_browser")
+      require("telescope").load_extension("undo")
     end,
   },
 }
