@@ -1,25 +1,25 @@
 return {
-  --   {
-  --     "mg979/vim-visual-multi",
-  --     init = function()
-  --       vim.cmd([[
-  -- let g:VM_maps                       = {}
-  -- let g:VM_maps['Find Under']         = '<C-d>'
-  -- let g:VM_maps['Find Subword Under'] = '<C-d>'
-  -- let g:VM_maps['Find Next']          = ''
-  -- let g:VM_maps['Find Prev']          = ''
-  -- let g:VM_maps['Remove Region']      = '<backspace>'
-  -- let g:VM_maps['Skip Region']        = '<leader>'
-  -- let g:VM_maps["Undo"]               = 'u'
-  -- let g:VM_maps["Redo"]               = 'r'
-  -- noremap <leader>sa <Plug>(VM-Select-All)
-  -- ]])
-  --     end,
-  --   },
+  {
+    "mg979/vim-visual-multi",
+    init = function()
+      vim.cmd([[
+  let g:VM_maps                       = {}
+  let g:VM_maps['Find Under']         = '<C-d>'
+  let g:VM_maps['Find Subword Under'] = '<C-d>'
+  let g:VM_maps['Find Next']          = ''
+  let g:VM_maps['Find Prev']          = ''
+  let g:VM_maps['Remove Region']      = '<backspace>'
+  let g:VM_maps['Skip Region']        = 'q'
+  let g:VM_maps["Undo"]               = 'u'
+  let g:VM_maps["Redo"]               = 'r'
+  ]])
+    end,
+  },
 
   {
     "smoka7/multicursors.nvim",
     event = "VeryLazy",
+    enabled = false,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "smoka7/hydra.nvim",

@@ -25,6 +25,7 @@ return {
         fancy = {
           enable = true,
         },
+        disabled_filetypes = require("util.ft").exclude_ft, -- this option will be skipped if enabled_filetypes is set. example: { "TelescopePrompt", "NvimTree" }
       })
     end,
     event = "BufRead",

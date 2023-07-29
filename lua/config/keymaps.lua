@@ -6,6 +6,7 @@
 local mode_nv = { "n", "v" }
 local mode_v = { "v" }
 local mode_i = { "i" }
+local mode_ni = { "n", "i" }
 local nmappings = {
   -- page scroll
   -- {
@@ -45,16 +46,6 @@ local nmappings = {
     to = "<c-r>",
   },
   --
-  {
-    from = "<M-up>",
-    to = "<ESC>:m .-2<CR>==gi",
-    mode = mode_i,
-  },
-  {
-    from = "<M-down>",
-    to = "<ESC>:m .+1<CR>==gi",
-    mode = mode_i,
-  },
 
   {
     from = "cw",
@@ -95,17 +86,6 @@ local nmappings = {
     from = "c",
     to = '"_c',
     mode = mode_v,
-  },
-
-  {
-    from = "<M-left>",
-    to = "<ESC>bi",
-    mode = mode_i,
-  },
-  {
-    from = "<M-right>",
-    to = "<ESC>ea",
-    mode = mode_i,
   },
 
   -- undo
@@ -268,6 +248,26 @@ local nmappings = {
     to = "<Esc><cmd>lua vim.lsp.buf.code_action()<CR>",
   },
   { from = "<c-a>", to = "gg<s-v>G" },
+  {
+    from = "<M-left>",
+    to = "<ESC>bi",
+    mode = mode_ni,
+  },
+  {
+    from = "<M-right>",
+    to = "<ESC>ea",
+    mode = mode_ni,
+  },
+  {
+    from = "<M-up>",
+    to = "<ESC>:m .-2<CR>==gi",
+    mode = mode_ni,
+  },
+  {
+    from = "<M-down>",
+    to = "<ESC>:m .+1<CR>==gi",
+    mode = mode_ni,
+  },
 }
 
 for _, mapping in ipairs(nmappings) do

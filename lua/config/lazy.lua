@@ -21,6 +21,7 @@ require("lazy").setup({
 
     { import = "lazyvim.plugins.extras.util.project" },
     { import = "lazyvim.plugins.extras.vscode" },
+    { import = "lazyvim.plugins.extras.lang.python" },
 
     { import = "plugins" },
     { import = "config.highlight" },
