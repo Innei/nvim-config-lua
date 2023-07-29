@@ -7,6 +7,9 @@ return {
       { "folke/which-key.nvim" },
       { "debugloop/telescope-undo.nvim" },
       { "nvim-lua/plenary.nvim" },
+      {
+        "tomasky/bookmarks.nvim",
+      },
     },
     config = function(_, opts)
       local wk = require("which-key")
@@ -106,6 +109,7 @@ return {
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("file_browser")
       require("telescope").load_extension("undo")
+      require("telescope").load_extension("bookmarks")
     end,
   },
 }
