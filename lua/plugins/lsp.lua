@@ -249,8 +249,22 @@ return {
   -- configure lsp easy
   {
     "tamago324/nlsp-settings.nvim",
-    enabled = false,
+    enabled = true,
     cmd = "LspSettings",
     opts = {},
+  },
+  {
+    "dnlhc/glance.nvim",
+    event = "BufRead",
+    config = function()
+      require("glance").setup({
+        -- your configuration
+      })
+
+      vim.keymap.set("n", "gD", "<CMD>Glance definitions<CR>")
+      vim.keymap.set("n", "gR", "<CMD>Glance references<CR>")
+      vim.keymap.set("n", "gY", "<CMD>Glance type_definitions<CR>")
+      vim.keymap.set("n", "gM", "<CMD>Glance implementations<CR>")
+    end,
   },
 }
