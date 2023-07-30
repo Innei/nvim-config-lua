@@ -23,7 +23,6 @@ return {
   },
   {
     "folke/noice.nvim",
-    -- enabled = false,
     opts = {
       -- cmdline = {
       --   -- enabled = true, -- enables the Noice cmdline UI

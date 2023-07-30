@@ -37,7 +37,7 @@ return {
   },
   {
     "windwp/nvim-autopairs",
-    event = "InsertEnter",
+    event = "VeryLazy",
     opts = {}, -- this is equalent to setup({}) function
     enabled = true,
   },
@@ -46,6 +46,7 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
+    event = "VeryLazy",
     config = function()
       local filetypes = {
         "html",

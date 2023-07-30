@@ -102,8 +102,8 @@ return {
       local luasnip = require("luasnip")
       local cmp = require("cmp")
 
-      -- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      -- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
       opts.formatting.format = function(entry, item)
         item.kind = icons[item.kind] or item.kind
@@ -236,7 +236,11 @@ return {
       require("lspsaga").setup({
         ui = {
           code_action = "💡",
+        },
+        lightbulb = {
           sign = false,
+          virtual_text = true,
+          enable = true,
         },
       })
       vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc")
@@ -295,11 +299,23 @@ return {
         preview_window_title = { enable = true, position = "left" }, -- Whether to set the preview window title as the filename
       })
 
-      vim.cmd([[nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
-nnoremap gpt <cmd>lua require('goto-preview').goto_preview_type_definition()<CR>
-nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>
-nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>
-nnoremap gpr <cmd>lua require('goto-preview').goto_preview_references()<CR>]])
+      local utils = require("util.utils")
+
+      local set_keymap = utils.set_n_keymap
+
+      set_keymap("gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", "Go to definition preview")
+      set_keymap(
+        "gpt",
+        "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>",
+        "Go to type definition preview"
+      )
+      set_keymap(
+        "gpi",
+        "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>",
+        "Go to implementation preview"
+      )
+      set_keymap("gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", "Close all preview windows")
+      set_keymap("gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", "Go to references preview")
     end,
   },
   {

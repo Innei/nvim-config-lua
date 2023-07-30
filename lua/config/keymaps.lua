@@ -243,10 +243,6 @@ local nmappings = {
     to = "<C-w>",
     mode = mode_i,
   },
-  {
-    from = "<M-.>",
-    to = "<Esc><cmd>lua vim.lsp.buf.code_action()<CR>",
-  },
   { from = "<c-a>", to = "gg<s-v>G" },
   {
     from = "<M-left>",
@@ -268,14 +264,57 @@ local nmappings = {
     to = "<ESC>:m .+1<CR>==gi",
     mode = mode_ni,
   },
+
+  {
+    from = "<M-D-.>",
+    to = function()
+      vim.lsp.buf.code_action()
+    end,
+  },
+
+  {
+    from = "<M-D-.>",
+    to = function()
+      vim.cmd("stopinsert")
+      vim.lsp.buf.code_action()
+    end,
+    mode = mode_i,
+  },
+  {
+    from = "<M-/>",
+    to = function()
+      require("telescope.builtin").live_grep()
+    end,
+  },
+  {
+    from = "<F5>",
+    to = function()
+      -- format code
+      vim.lsp.buf.format()
+    end,
+  },
+
+  {
+    from = "<F5>",
+    to = function()
+      -- exit insert mode
+      vim.cmd("stopinsert")
+      -- format code
+      vim.lsp.buf.format()
+    end,
+    mode = mode_i,
+  },
 }
 
 for _, mapping in ipairs(nmappings) do
-  vim.keymap.set(mapping.mode or "n", mapping.from, mapping.to, { noremap = mapping.noremap or true })
+  vim.keymap.set(mapping.mode or "n", mapping.from, mapping.to, { noremap = mapping.noremap or true, silent = true })
 end
 
+-- delete lazynvim built-in keymaps
 vim.keymap.del({ "n", "x" }, "j")
 vim.keymap.del({ "n", "x" }, "k")
+vim.keymap.del({ "n" }, "<c-b>")
 
 vim.api.nvim_set_keymap("n", "j", "<Plug>(accelerated_jk_gj)", {})
 vim.api.nvim_set_keymap("n", "k", "<Plug>(accelerated_jk_gk)", {})
+vim.cmd([[nnoremap <C-b> :Neotree toggle<cr>]])

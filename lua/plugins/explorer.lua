@@ -21,28 +21,9 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
     event = "VeryLazy",
-    keys = {
-      {
-        "<leader>fe",
-        function()
-          require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
-        end,
-        desc = "Explorer NeoTree (root dir)",
-      },
-      {
-        "<leader>fE",
-        function()
-          require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-        end,
-        desc = "Explorer NeoTree (cwd)",
-      },
-      { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
-      { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
-      -- { "tt", ":Neotree focus<CR>:Neotree reveal<CR>", desc = "Explorer NeoTree focus (cwd)", remap = true },
-      { "<C-b>", ":Neotree toggle<CR>", desc = "Explorer NeoTree toggle (cwd)", remap = true },
-    },
     opts = function(_, opts)
       vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
+      vim.cmd([[nnoremap <C-b> :Neotree toggle<cr>]])
       opts.filesystem = {
         filtered_items = {
           visible = true, -- when true, they will just be displayed differently than normal items
@@ -141,13 +122,6 @@ return {
         ["<"] = "prev_source",
         [">"] = "next_source",
       }
-
-      vim.api.nvim_create_autocmd("VimEnter", {
-        command = "set nornu nonu | Neotree toggle",
-      })
-      vim.api.nvim_create_autocmd("BufEnter", {
-        command = "set rnu nu",
-      })
     end,
   },
 }

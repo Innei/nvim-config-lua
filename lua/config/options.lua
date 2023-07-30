@@ -11,7 +11,7 @@ vim.api.nvim_set_hl(0, "ICursorColor", {
 
 opt.clipboard = "unnamedplus"
 opt.wrap = true
-opt.clipboard = ""
+-- opt.clipboard = ""
 
 opt.spelllang = "en,cjk"
 -- vim.opt.spell = true
