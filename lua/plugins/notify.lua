@@ -144,6 +144,8 @@ return {
               { find = "diagnostics" },
               { find = "code_action" },
               { find = "Processing full semantic tokens" },
+              { find = "symbols" },
+              { find = "completion" },
             },
           },
           opts = { skip = true },

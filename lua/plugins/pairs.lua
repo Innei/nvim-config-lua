@@ -2,6 +2,7 @@ return {
   {
     "m4xshen/autoclose.nvim",
     event = "InsertEnter",
+    enabled = false,
     config = function()
       require("autoclose").setup({
 
@@ -38,7 +39,7 @@ return {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {}, -- this is equalent to setup({}) function
-    enabled = false,
+    enabled = true,
   },
   {
     "windwp/nvim-ts-autotag",

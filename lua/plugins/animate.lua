@@ -22,6 +22,8 @@ return {
     config = function()
       require("smoothcursor").setup({
         cursor = "",
+
+        priority = 1, -- set marker priority
         fancy = {
           enable = true,
         },

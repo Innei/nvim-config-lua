@@ -1,28 +1,25 @@
 return {
   "luukvbaal/statuscol.nvim",
-  event = "VeryLazy",
+  event = "BufReadPost",
+  init = function()
+    vim.opt_global.foldcolumn = "1"
+
+    vim.opt.signcolumn = "yes:2"
+    vim.opt_global.signcolumn = "yes:2"
+  end,
   opts = function()
-    require("statuscol").setup({})
-    -- local builtin = require("statuscol.builtin")
-    -- return {
-    --   relculright = true,
-    --   segments = {
-    --     {
-    --       sign = { name = { ".*" }, maxwidth = 1, auto = true },
-    --       click = "v:lua#.ScSa",
-    --     },
-    --     { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
-    --     { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-    --     {
-    --       text = { " " },
-    --       condition = { builtin.not_empty, true, builtin.not_empty },
-    --       click = "v:lua.ScFa",
-    --     },
-    --     {
-    --       sign = { name = { "GitSigns" }, maxwidth = 1, colwidth = 1, auto = true },
-    --       click = "v:lua.ScSa",
-    --     },
-    --   },
-    -- }
+    local builtin = require("statuscol.builtin")
+    return {
+      setopt = true,
+      relculright = true,
+      segments = {
+        {
+          sign = { name = { ".*" }, maxwidth = 2, colwidth = 2, auto = false },
+          click = "v:lua.ScSa",
+        },
+        { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
+        { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+      },
+    }
   end,
 }
