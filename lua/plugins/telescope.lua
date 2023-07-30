@@ -17,7 +17,17 @@ return {
       wk.register({
         ["<leader>t"] = {
           name = "telescope",
-          f = { "<cmd>Telescope find_files<cr>", "find files" },
+          a = {
+            function()
+              require("telescope.builtin").find_files({
+                no_ignore = true,
+                hidden = true,
+                prompt_title = "All Files",
+              })
+            end,
+            "All files",
+          },
+          f = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>", "find files" },
           b = { "<cmd>Telescope buffers<cr>", "buffers" },
           h = { "<cmd>Telescope help_tags<cr>", "help tags" },
           m = { "<cmd>Telescope marks<cr>", "marks" },
@@ -36,17 +46,15 @@ return {
         },
 
         ["<leader>fw"] = {
-
           "<cmd>Telescope grep_string<cr>",
           "grep string",
         },
         ["<c-f>"] = {
-
           "<cmd>Telescope live_grep<cr>",
           "live grep",
         },
         ["<c-p>"] = {
-          "<cmd>Telescope fd<cr>",
+          "<cmd>Telescope fd find_command=rg,--ignore,--hidden,--files<cr>",
           "find file",
         },
       })
