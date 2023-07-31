@@ -267,16 +267,21 @@ local nmappings = {
 
   {
     from = "<M-D-.>",
-    to = function()
-      vim.lsp.buf.code_action()
-    end,
+    to = vim.lsp.buf.code_action,
   },
 
   {
     from = "<M-D-.>",
     to = function()
       vim.cmd("stopinsert")
-      vim.lsp.buf.code_action()
+      vim.lsp.buf.code_action({
+        context = {
+          only = {
+            "source",
+          },
+          diagnostics = {},
+        },
+      })
     end,
     mode = mode_i,
   },
@@ -286,6 +291,14 @@ local nmappings = {
       require("telescope.builtin").live_grep()
     end,
   },
+
+  -- {
+  --   from = "<M-/>",
+  --   to = function()
+  --     require("telescope.builtin").live_grep()
+  --   end,
+  --   mode=mode_i
+  -- },
   {
     from = "<F5>",
     to = function()

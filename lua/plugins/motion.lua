@@ -8,7 +8,11 @@ return {
     event = "VeryLazy",
     ---@type Flash.Config
     opts = {
+      search = {
+        mode = "fuzzy",
+      },
       modes = {
+
         char = {
           enabled = true,
           -- dynamic configuration for ftFT motions
@@ -30,7 +34,7 @@ return {
           multi_line = true,
           -- When using jump labels, don't use these keys
           -- This allows using those keys directly after the motion
-          label = { exclude = "hjkliardc" },
+          -- label = { exclude = "hjkliardc" },
           -- by default all keymaps are enabled, but you can disable some of them,
           -- by removing them from the list.
           -- If you rather use another key, you can map them
