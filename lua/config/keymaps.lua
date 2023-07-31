@@ -151,6 +151,11 @@ local nmappings = {
     to = "g_",
     mode = mode_v,
   },
+  {
+    from = "'",
+    to = ".",
+    mode = mode_nv,
+  },
 
   -- vscode like mapping
   {
@@ -235,7 +240,18 @@ local nmappings = {
   },
   {
     from = "<M-p>",
-    to = "<ESC>:Telescope<CR>",
+    to = function()
+      require("telescope.builtin").find_files({
+        hidden = true,
+        follow = true,
+      })
+    end,
+  },
+  {
+    from = "<F14>",
+    to = function()
+      require("spectre").open_file_search({ select_word = false })
+    end,
   },
   {
     from = "<M-backspace>",
@@ -286,36 +302,55 @@ local nmappings = {
     mode = mode_i,
   },
   {
-    from = "<M-/>",
+    from = "<C-,>",
     to = function()
       require("telescope.builtin").live_grep()
     end,
   },
 
-  -- {
-  --   from = "<M-/>",
-  --   to = function()
-  --     require("telescope.builtin").live_grep()
-  --   end,
-  --   mode=mode_i
-  -- },
   {
-    from = "<F5>",
+    from = "<M-/>",
     to = function()
-      -- format code
-      vim.lsp.buf.format()
+      local ok, api = pcall(require, "Comment.api")
+      if not ok then
+        return
+      end
+
+      local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+
+      vim.api.nvim_feedkeys(esc, "nx", false)
+      api.toggle.linewise(vim.fn.visualmode())
     end,
+    mode = mode_v,
   },
 
   {
+
+    from = "<M-/>",
+    to = function()
+      local ok, api = pcall(require, "Comment.api")
+      if not ok then
+        return
+      end
+      api.toggle.linewise.current()
+    end,
+    mode = mode_ni,
+  },
+  {
     from = "<F5>",
     to = function()
-      -- exit insert mode
-      vim.cmd("stopinsert")
       -- format code
       vim.lsp.buf.format()
     end,
-    mode = mode_i,
+    mode = mode_ni,
+  },
+
+  {
+    from = "<F13>",
+    to = function()
+      vim.cmd([[wa]])
+    end,
+    mode = mode_ni,
   },
 }
 
