@@ -212,34 +212,40 @@ local nmappings = {
   },
   -- vscode like mapping based on kitty keymap mapping
   {
-    from = "<M-x>",
+    from = "<D-x>",
     to = '"+d',
     mode = mode_v,
   },
   {
-    from = "<M-d>",
+    from = "<D-d>",
     to = "viw",
   },
   {
-    from = "<M-x>",
+    from = "<D-x>",
     to = "dd",
   },
   {
-    from = "<M-c>",
+    from = "<D-c>",
     to = '"+y',
     mode = mode_v,
   },
   {
-    from = "<M-z>",
+    from = "<D-z>",
     to = "<ESC>ui",
     mode = mode_i,
   },
+
   {
-    from = "<M-z>",
+    from = "<D-S-z>",
+    to = "<ESC><C-r>i",
+    mode = mode_i,
+  },
+  {
+    from = "<D-z>",
     to = "u",
   },
   {
-    from = "<M-p>",
+    from = "<D-p>",
     to = function()
       require("telescope.builtin").find_files({
         hidden = true,
@@ -248,18 +254,17 @@ local nmappings = {
     end,
   },
   {
-    from = "<F14>",
+    from = "<D-f>",
     to = function()
       require("spectre").open_file_search({ select_word = false })
     end,
   },
   {
     from = "<M-backspace>",
-
     to = "<C-w>",
     mode = mode_i,
   },
-  { from = "<c-a>", to = "gg<s-v>G" },
+  { from = "<C-a>", to = "gg<s-v>G" },
   {
     from = "<M-left>",
     to = "<ESC>bi",
@@ -282,12 +287,12 @@ local nmappings = {
   },
 
   {
-    from = "<M-D-.>",
+    from = "<D-.>",
     to = vim.lsp.buf.code_action,
   },
 
   {
-    from = "<M-D-.>",
+    from = "<D-.>",
     to = function()
       vim.cmd("stopinsert")
       vim.lsp.buf.code_action({
@@ -302,14 +307,14 @@ local nmappings = {
     mode = mode_i,
   },
   {
-    from = "<C-,>",
+    from = "<D-,>",
     to = function()
       require("telescope.builtin").live_grep()
     end,
   },
 
   {
-    from = "<M-/>",
+    from = "<D-/>",
     to = function()
       local ok, api = pcall(require, "Comment.api")
       if not ok then
@@ -325,8 +330,7 @@ local nmappings = {
   },
 
   {
-
-    from = "<M-/>",
+    from = "<D-/>",
     to = function()
       local ok, api = pcall(require, "Comment.api")
       if not ok then
@@ -346,7 +350,7 @@ local nmappings = {
   },
 
   {
-    from = "<F13>",
+    from = "<M-D-s>",
     to = function()
       vim.cmd([[wa]])
     end,
