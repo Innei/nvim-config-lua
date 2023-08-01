@@ -21,7 +21,8 @@ local nmappings = {
     to = ":",
     mode = mode_nv,
   },
-  { from = "y", to = '"+y', mode = mode_nv },
+  { from = "y", to = '"+y' },
+  { from = "y", to = '"+ygv<esc>', mode = mode_v },
   {
     from = "`",
     to = "~",
@@ -222,11 +223,11 @@ local nmappings = {
   },
   {
     from = "<D-x>",
-    to = "dd",
+    to = '"+dd',
   },
   {
     from = "<M-c>",
-    to = '"+y',
+    to = '"+ygv<esc>',
     mode = mode_v,
   },
   {

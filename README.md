@@ -20,6 +20,8 @@ To use the mapping below, you must use the matching [kitty configuration](https:
 | Comment + S         | (N/I)   | Save File                            |
 | Comment + Shfit + S | (N/I)   | Save All                             |
 | Comment + F         | (N)     | Find                                 |
+| Comment + Shif + Z  | (N/I)   | Redo                                 |
+| Comment + Z         | (N/I)   | Undo                                 |
 
 ## Shots
 

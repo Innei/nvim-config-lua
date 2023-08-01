@@ -1,7 +1,7 @@
 return {
   {
     "m4xshen/autoclose.nvim",
-    event = "InsertEnter",
+    event = "BufEnter",
     enabled = false,
     config = function()
       require("autoclose").setup({
@@ -74,6 +74,20 @@ return {
           enable_close = true,
           enable_close_on_slash = false,
           filetypes = filetypes,
+        },
+      })
+    end,
+  },
+
+  {
+    "andymass/vim-matchup",
+    event = "BufEnter",
+    config = function()
+      -- may set any options here
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      require("nvim-treesitter.configs").setup({
+        matchup = {
+          enable = true, -- mandatory, false will disable the whole extension
         },
       })
     end,
