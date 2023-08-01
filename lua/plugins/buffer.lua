@@ -13,6 +13,13 @@ return {
         end,
         desc = "Delete buffer",
       },
+      {
+        "<C-q>",
+        function()
+          require("mini.bufremove").delete(nil, false)
+        end,
+        desc = "Delete buffer",
+      },
     },
 
     -- config = function()

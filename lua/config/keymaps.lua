@@ -225,7 +225,7 @@ local nmappings = {
     to = "dd",
   },
   {
-    from = "<D-c>",
+    from = "<M-c>",
     to = '"+y',
     mode = mode_v,
   },
