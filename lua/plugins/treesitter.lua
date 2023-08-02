@@ -14,6 +14,10 @@ return {
 
       local swap_ternary = require("plugin.swap_ternary")
       vim.keymap.set("n", "<leader>sX", swap_ternary.swap_ternary, { noremap = true })
+
+      opts.context_commentstring = {
+        enable_autocmd = false,
+      }
     end,
   },
   {

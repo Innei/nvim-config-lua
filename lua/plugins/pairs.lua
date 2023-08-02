@@ -82,14 +82,15 @@ return {
   {
     "andymass/vim-matchup",
     event = "BufEnter",
+    enabled = false,
     config = function()
       -- may set any options here
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
-      require("nvim-treesitter.configs").setup({
-        matchup = {
-          enable = true, -- mandatory, false will disable the whole extension
-        },
-      })
+      -- require("nvim-treesitter.configs").setup({
+      --   matchup = {
+      --     enable = true, -- mandatory, false will disable the whole extension
+      --   },
+      -- })
     end,
   },
 }

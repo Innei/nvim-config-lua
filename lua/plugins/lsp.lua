@@ -144,8 +144,6 @@ return {
           i = function(fallback)
             fallback()
           end,
-          -- c = cmp.mapping.close(),
-          c = cmp.mapping.abort(),
         }),
         ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
         ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),

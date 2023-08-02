@@ -28,8 +28,7 @@ local nmappings = {
     to = "~",
     mode = mode_nv,
   },
-  -- {
-  --   from = "jj",
+  -- { from = "jj",
   --   to = "<ESC>",
   --   mode = mode_i,
   -- },
@@ -244,6 +243,12 @@ local nmappings = {
   {
     from = "<D-z>",
     to = "u",
+  },
+  {
+    from = "<S-D-p>",
+    to = function()
+      vim.cmd([[Telescope]])
+    end,
   },
   {
     from = "<D-p>",
