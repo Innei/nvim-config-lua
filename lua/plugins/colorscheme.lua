@@ -15,7 +15,7 @@ return {
           local macchiato = require("catppuccin.palettes").get_palette("macchiato")
 
           return {
-            Visual = { fg = colors.text, bg = colors.overlay0 },
+            Visual = { bg = colors.overlay0 },
             CursorLine = { bg = macchiato.crust },
             CursorIM = {
               bg = colors.sky,
