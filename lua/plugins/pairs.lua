@@ -46,7 +46,8 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
-    event = "VeryLazy",
+    enabled = false,
+    event = "FileType .tsx,.jsx,.html,.vue",
     config = function()
       local filetypes = {
         "html",

@@ -48,23 +48,25 @@ return {
         },
       },
     },
-    keys = {
-      {
-        "s",
-        mode = { "n" },
-        function()
-          require("flash").jump()
-        end,
-        desc = "Flash",
-      },
-      {
-        "S",
-        mode = { "n" },
-        function()
-          require("flash").treesitter()
-        end,
-        desc = "Flash Treesitter",
-      },
-    },
+    keys = function()
+      return {
+        {
+          "s",
+          -- mode = { "n" },
+          function()
+            require("flash").jump()
+          end,
+          desc = "Flash",
+        },
+        {
+          "S",
+          -- mode = { "n" },
+          function()
+            require("flash").treesitter()
+          end,
+          desc = "Flash Treesitter",
+        },
+      }
+    end,
   },
 }
