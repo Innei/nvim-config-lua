@@ -258,6 +258,7 @@ local nmappings = {
         follow = true,
       })
     end,
+    mode = mode_ni,
   },
   {
     from = "<D-f>",
