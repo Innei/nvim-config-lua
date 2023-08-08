@@ -28,6 +28,25 @@ local nmappings = {
     to = "~",
     mode = mode_nv,
   },
+
+  {
+    from = "<C-i>",
+    to = "<C-d>",
+    mode = mode_nv,
+  },
+  {
+    from = "-",
+    to = "<C-x>",
+  },
+  {
+    from = "=",
+    to = "<C-a>",
+  },
+  {
+    from = "<C-;>",
+    to = "<Right>",
+    mode = mode_i,
+  },
   -- { from = "jj",
   --   to = "<ESC>",
   --   mode = mode_i,
@@ -156,10 +175,13 @@ local nmappings = {
     to = ".",
     mode = mode_nv,
   },
+  {
+    from = "J",
+    to = "<nop>",
+  },
 
   -- vscode like mapping
   {
-
     from = "<S-up>",
     to = "Vk",
   },
@@ -168,11 +190,11 @@ local nmappings = {
     to = "Vj",
   },
   {
-    from = "<S-left>",
+    from = "<S-Left>",
     to = "vh",
   },
   {
-    from = "<S-right>",
+    from = "<S-Right>",
     to = "vl",
   },
   {
@@ -296,6 +318,7 @@ local nmappings = {
   {
     from = "<D-.>",
     to = vim.lsp.buf.code_action,
+    mode = mode_nv,
   },
 
   {
@@ -318,6 +341,7 @@ local nmappings = {
     to = function()
       require("telescope.builtin").live_grep()
     end,
+    mode = mode_ni,
   },
 
   {
