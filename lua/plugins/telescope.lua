@@ -45,18 +45,30 @@ return {
           },
         },
 
-        ["<leader>fw"] = {
-          "<cmd>Telescope grep_string<cr>",
-          "grep string",
-        },
         ["<c-f>"] = {
-          "<cmd>Telescope live_grep<cr>",
+          "<cmd>Telescope live_grep find_command=rg,--ignore,--hidden,-F<cr>",
           "live grep",
         },
-        ["<c-p>"] = {
-          "<cmd>Telescope fd find_command=rg,--ignore,--hidden,--files<cr>",
+      })
+
+      wk.register({
+        -- -F fixed string
+        ["<d-p>"] = {
+          "<cmd>Telescope fd find_command=rg,--ignore,--hidden,--files,-F<cr>",
           "find file",
         },
+
+        ["<c-p>"] = {
+          "<cmd>Telescope fd find_command=rg,--ignore,--hidden,--files,-F<cr>",
+          "find file",
+        },
+
+        ["<d-,>"] = {
+          "<cmd>Telescope live_grep find_command=rg,--ignore,--hidden,--files,-F<cr>",
+          "live grep",
+        },
+      }, {
+        mode = { "n", "i" },
       })
 
       local actions = require("telescope.actions")
@@ -92,6 +104,19 @@ return {
         },
 
         defaults = {
+          file_ignore_patterns = {
+            ".git/",
+            ".cache",
+            "%.o",
+            "%.a",
+            "%.out",
+            "%.class",
+            "%.pdf",
+            "%.mkv",
+            "%.mp4",
+            "%.zip",
+          },
+
           git_worktrees = vim.g.git_worktrees,
           path_display = { "truncate" },
           sorting_strategy = "ascending",

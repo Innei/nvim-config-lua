@@ -38,6 +38,10 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
+      require("lazyvim.util").get_root = function()
+        return vim.loop.cwd()
+      end
+
       -- Function to check if a floating dialog exists and if not
       -- then check for diagnostics under the cursor
       function OpenDiagnosticIfNoFloat()
@@ -59,6 +63,7 @@ return {
           },
         })
       end
+
       -- Show diagnostics under the cursor when holding position
       vim.api.nvim_create_augroup("lsp_diagnostics_hold", { clear = true })
       vim.api.nvim_create_autocmd({ "CursorHold" }, {
@@ -86,6 +91,18 @@ return {
       opts.inlay_hints = {
         enabled = true,
       }
+
+      opts.servers.tsserver = vim.tbl_extend("force", opts.servers.tsserver, {
+        root_dir = function(...)
+          return require("lspconfig.util").root_pattern(".git")(...)
+        end,
+      })
+
+      opts.servers.tailwindcss = vim.tbl_extend("force", opts.servers.tailwindcss, {
+        root_dir = function(...)
+          return require("lspconfig.util").root_pattern(".git")(...)
+        end,
+      })
     end,
   },
   {
@@ -196,30 +213,29 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       table.insert(opts.ensure_installed, "json-lsp")
+      table.insert(opts.ensure_installed, "cspell")
       -- table.insert(opts.ensure_installed, "proselint")
       -- table.insert(opts.ensure_installed, "write-good")
       -- table.insert(opts.ensure_installed, "alex")
-      -- table.insert(opts.ensure_installed, "cspell")
     end,
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
-      -- local nls = require("null-ls")
+      local nls = require("null-ls")
       opts.sources = vim.list_extend(opts.sources, {
         -- nls.builtins.diagnostics.proselint,
         -- nls.builtins.diagnostics.write_good,
         -- nls.builtins.diagnostics.alex,
         -- nls.builtins.code_actions.proselint,
-        -- nls.builtins.code_actions.cspell,
-        -- nls.builtins.diagnostics.cspell.with({
-        --   -- Force the severity to be HINT
-        --   diagnostics_postprocess = function(diagnostic)
-        --     diagnostic.severity = vim.diagnostic.severity.HINT
-        --   end,
-        -- }),
+        nls.builtins.code_actions.cspell,
+        nls.builtins.diagnostics.cspell.with({
+          -- Force the severity to be HINT
+          diagnostics_postprocess = function(diagnostic)
+            diagnostic.severity = vim.diagnostic.severity.HINT
+          end,
+        }),
       })
-      -- table.insert(opts.source, nls.builtins.completion.spell)
     end,
   },
   {

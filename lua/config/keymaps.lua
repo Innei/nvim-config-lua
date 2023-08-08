@@ -273,16 +273,6 @@ local nmappings = {
     end,
   },
   {
-    from = "<D-p>",
-    to = function()
-      require("telescope.builtin").find_files({
-        hidden = true,
-        follow = true,
-      })
-    end,
-    mode = mode_ni,
-  },
-  {
     from = "<D-f>",
     to = function()
       require("spectre").open_file_search({ select_word = false })
@@ -322,6 +312,11 @@ local nmappings = {
   },
 
   {
+    from = "<D-f>",
+    to = "<nop>",
+    mode = mode_i,
+  },
+  {
     from = "<D-.>",
     to = function()
       vim.cmd("stopinsert")
@@ -336,13 +331,13 @@ local nmappings = {
     end,
     mode = mode_i,
   },
-  {
-    from = "<D-,>",
-    to = function()
-      require("telescope.builtin").live_grep()
-    end,
-    mode = mode_ni,
-  },
+  -- {
+  --   from = "<D-,>",
+  --   to = function()
+  --     require("telescope.builtin").live_grep()
+  --   end,
+  --   mode = mode_ni,
+  -- },
 
   {
     from = "<D-/>",
