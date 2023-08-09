@@ -1,6 +1,7 @@
 return {
   {
     "AndrewRadev/switch.vim",
+    vscode = true,
     keys = {
       {
         "<leader>sx",

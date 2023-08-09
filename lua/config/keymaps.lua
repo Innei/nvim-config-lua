@@ -1,8 +1,4 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
 -- vim.g.mapleader = " "
-
 local mode_nv = { "n", "v" }
 local mode_v = { "v" }
 local mode_i = { "i" }
@@ -232,157 +228,162 @@ local nmappings = {
     from = "<leader><right>",
     to = "<C-w>l",
   },
-  -- vscode like mapping based on kitty keymap mapping
-  {
-    from = "<D-x>",
-    to = '"+d',
-    mode = mode_v,
-  },
-  {
-    from = "<D-d>",
-    to = "viw",
-  },
-  {
-    from = "<D-x>",
-    to = '"+dd',
-  },
-  {
-    from = "<M-c>",
-    to = '"+ygv<esc>',
-    mode = mode_v,
-  },
-  {
-    from = "<D-z>",
-    to = "<ESC>ui",
-    mode = mode_i,
-  },
-
-  {
-    from = "<D-S-z>",
-    to = "<ESC><C-r>i",
-    mode = mode_i,
-  },
-  {
-    from = "<D-z>",
-    to = "u",
-  },
-  {
-    from = "<S-D-p>",
-    to = function()
-      vim.cmd([[Telescope]])
-    end,
-  },
-  {
-    from = "<D-f>",
-    to = function()
-      require("spectre").open_file_search({ select_word = false })
-    end,
-  },
-  {
-    from = "<M-backspace>",
-    to = "<C-w>",
-    mode = mode_i,
-  },
-  { from = "<C-a>", to = "gg<s-v>G" },
-  {
-    from = "<M-left>",
-    to = "<ESC>bi",
-    mode = mode_ni,
-  },
-  {
-    from = "<M-right>",
-    to = "<ESC>ea",
-    mode = mode_ni,
-  },
-  {
-    from = "<M-up>",
-    to = "<ESC>:m .-2<CR>==gi",
-    mode = mode_ni,
-  },
-  {
-    from = "<M-down>",
-    to = "<ESC>:m .+1<CR>==gi",
-    mode = mode_ni,
-  },
-
-  {
-    from = "<D-.>",
-    to = vim.lsp.buf.code_action,
-    mode = mode_nv,
-  },
-
-  {
-    from = "<D-f>",
-    to = "<nop>",
-    mode = mode_i,
-  },
-  {
-    from = "<D-.>",
-    to = function()
-      vim.cmd("stopinsert")
-      vim.lsp.buf.code_action({
-        context = {
-          only = {
-            "source",
-          },
-          diagnostics = {},
-        },
-      })
-    end,
-    mode = mode_i,
-  },
-  -- {
-  --   from = "<D-,>",
-  --   to = function()
-  --     require("telescope.builtin").live_grep()
-  --   end,
-  --   mode = mode_ni,
-  -- },
-
-  {
-    from = "<D-/>",
-    to = function()
-      local ok, api = pcall(require, "Comment.api")
-      if not ok then
-        return
-      end
-
-      local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
-
-      vim.api.nvim_feedkeys(esc, "nx", false)
-      api.toggle.linewise(vim.fn.visualmode())
-    end,
-    mode = mode_v,
-  },
-
-  {
-    from = "<D-/>",
-    to = function()
-      local ok, api = pcall(require, "Comment.api")
-      if not ok then
-        return
-      end
-      api.toggle.linewise.current()
-    end,
-    mode = mode_ni,
-  },
-  {
-    from = "<F5>",
-    to = function()
-      -- format code
-      vim.lsp.buf.format()
-    end,
-    mode = mode_ni,
-  },
-
-  {
-    from = "<M-D-s>",
-    to = function()
-      vim.cmd([[wa]])
-    end,
-    mode = mode_ni,
-  },
 }
+
+-- vscode like mapping based on kitty keymap mapping
+if vim.g.vscode == nil then
+  nmappings = vim.list_extend(nmappings, {
+    {
+      from = "<D-x>",
+      to = '"+d',
+      mode = mode_v,
+    },
+    {
+      from = "<D-d>",
+      to = "viw",
+    },
+    {
+      from = "<D-x>",
+      to = '"+dd',
+    },
+    {
+      from = "<M-c>",
+      to = '"+ygv<esc>',
+      mode = mode_v,
+    },
+    {
+      from = "<D-z>",
+      to = "<ESC>ui",
+      mode = mode_i,
+    },
+
+    {
+      from = "<D-S-z>",
+      to = "<ESC><C-r>i",
+      mode = mode_i,
+    },
+    {
+      from = "<D-z>",
+      to = "u",
+    },
+    {
+      from = "<S-D-p>",
+      to = function()
+        vim.cmd([[Telescope]])
+      end,
+    },
+    {
+      from = "<D-f>",
+      to = function()
+        require("spectre").open_file_search({ select_word = false })
+      end,
+    },
+    {
+      from = "<M-backspace>",
+      to = "<C-w>",
+      mode = mode_i,
+    },
+    { from = "<C-a>", to = "gg<s-v>G" },
+    {
+      from = "<M-left>",
+      to = "<ESC>bi",
+      mode = mode_ni,
+    },
+    {
+      from = "<M-right>",
+      to = "<ESC>ea",
+      mode = mode_ni,
+    },
+    {
+      from = "<M-up>",
+      to = "<ESC>:m .-2<CR>==gi",
+      mode = mode_ni,
+    },
+    {
+      from = "<M-down>",
+      to = "<ESC>:m .+1<CR>==gi",
+      mode = mode_ni,
+    },
+
+    {
+      from = "<D-.>",
+      to = vim.lsp.buf.code_action,
+      mode = mode_nv,
+    },
+
+    {
+      from = "<D-f>",
+      to = "<nop>",
+      mode = mode_i,
+    },
+    {
+      from = "<D-.>",
+      to = function()
+        vim.cmd("stopinsert")
+        vim.lsp.buf.code_action({
+          context = {
+            only = {
+              "source",
+            },
+            diagnostics = {},
+          },
+        })
+      end,
+      mode = mode_i,
+    },
+    -- {
+    --   from = "<D-,>",
+    --   to = function()
+    --     require("telescope.builtin").live_grep()
+    --   end,
+    --   mode = mode_ni,
+    -- },
+
+    {
+      from = "<D-/>",
+      to = function()
+        local ok, api = pcall(require, "Comment.api")
+        if not ok then
+          return
+        end
+
+        local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+
+        vim.api.nvim_feedkeys(esc, "nx", false)
+        api.toggle.linewise(vim.fn.visualmode())
+      end,
+      mode = mode_v,
+    },
+
+    {
+      from = "<D-/>",
+      to = function()
+        local ok, api = pcall(require, "Comment.api")
+        if not ok then
+          return
+        end
+        api.toggle.linewise.current()
+      end,
+      mode = mode_ni,
+    },
+    {
+      from = "<F5>",
+      to = function()
+        -- format code
+        vim.lsp.buf.format()
+      end,
+      mode = mode_ni,
+    },
+
+    {
+      from = "<M-D-s>",
+      to = function()
+        vim.cmd([[wa]])
+      end,
+      mode = mode_ni,
+    },
+  })
+end
 
 for _, mapping in ipairs(nmappings) do
   vim.keymap.set(mapping.mode or "n", mapping.from, mapping.to, { noremap = mapping.noremap or true, silent = true })
@@ -391,8 +392,13 @@ end
 -- delete lazynvim built-in keymaps
 vim.keymap.del({ "n", "x" }, "j")
 vim.keymap.del({ "n", "x" }, "k")
-vim.keymap.del({ "n" }, "<c-b>")
 
 vim.api.nvim_set_keymap("n", "j", "<Plug>(accelerated_jk_gj)", {})
 vim.api.nvim_set_keymap("n", "k", "<Plug>(accelerated_jk_gk)", {})
-vim.cmd([[nnoremap <C-b> :Neotree toggle<cr>]])
+
+if vim.g.vscode == nil then
+  -- remap <c-b> to toggle neotree
+
+  vim.keymap.del({ "n" }, "<c-b>")
+  vim.cmd([[nnoremap <C-b> :Neotree toggle<cr>]])
+end

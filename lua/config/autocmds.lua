@@ -3,28 +3,6 @@
 -- Add any additional autocmds here
 --
 
--- local swap_ternary = require("plugin.swap_ternary")
--- vim.keymap.set("n", "<leader>sX", swap_ternary.swap_ternary, { noremap = true })
---
--- vim.api.nvim_create_autocmd({ "InsertLeave" }, {
---   pattern = { "*" },
---   callback = function()
---     vim.lsp.buf.format()
---   end,
--- })
---
--- local spell_group = vim.api.nvim_create_augroup("spell_group", { clear = true })
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = { "lua", "python", "go", "typescript", "typescriptreact", "javascript" },
---   command = "setlocal spell spelllang=en_us,cjk",
---   group = spell_group,
--- })
--- vim.api.nvim_create_autocmd("TermOpen", {
---   pattern = "*", -- disable spellchecking in the embeded terminal
---   command = "setlocal nospell",
---   group = spell_group,
--- })
-
 vim.api.nvim_create_user_command("Qa", "qa", { bang = true })
 vim.api.nvim_create_user_command("Q", "q", { bang = true })
 vim.api.nvim_create_user_command("W", "w", { bang = true })
@@ -40,28 +18,6 @@ vim.api.nvim_create_autocmd({ "DirChanged" }, {
     vim.fn.system(string.format("kitty @ set-tab-title %q", vim.fs.basename(vim.fn.getcwd())))
   end,
 })
-
--- local hasNumber = false
--- -- " toggle number releative or absolute
--- vim.api.nvim_create_autocmd("InsertEnter", {
---   callback = function()
---     hasNumber = vim.opt.number:get()
---     if not hasNumber then
---       return
---     end
---     vim.opt.relativenumber = false
---   end,
--- })
---
--- vim.api.nvim_create_autocmd("InsertLeave", {
---   callback = function()
---     if not hasNumber then
---       return
---     end
---     vim.opt.relativenumber = true
---   end,
--- })
---
 
 vim.cmd([[
 if !has('gui_running')

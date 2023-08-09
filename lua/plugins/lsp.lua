@@ -38,10 +38,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      require("lazyvim.util").get_root = function()
-        return vim.loop.cwd()
-      end
-
       -- Function to check if a floating dialog exists and if not
       -- then check for diagnostics under the cursor
       function OpenDiagnosticIfNoFloat()
@@ -97,6 +93,21 @@ return {
           return require("lspconfig.util").root_pattern(".git")(...)
         end,
       })
+
+      -- opts.servers.tsserver.settings = vim.tbl_extend("force", opts.servers.tsserver.settings, {
+      --   typescript = {
+      --     inlayHints = {
+      --       includeInlayParameterNameHints = "all",
+      --       includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+      --       includeInlayFunctionParameterTypeHints = true,
+      --       includeInlayVariableTypeHints = true,
+      --       includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+      --       includeInlayPropertyDeclarationTypeHints = false,
+      --       includeInlayFunctionLikeReturnTypeHints = true,
+      --       includeInlayEnumMemberValueHints = true,
+      --     },
+      --   },
+      -- })
 
       opts.servers.tailwindcss = vim.tbl_extend("force", opts.servers.tailwindcss, {
         root_dir = function(...)
@@ -189,26 +200,6 @@ return {
     end,
   },
 
-  -- https://www.lazyvim.org/configuration/recipes#use-eslint-for-fix-on-save-and-prettier-for-formatting
-  -- Add Eslint and use it for formatting
-  -- If your project is using eslint with eslint-plugin-prettier, then this will automatically fix eslint errors and format with prettier on save. Important: make sure not to add prettier to null-ls, otherwise this won't work!
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = {
-  --     servers = { eslint = {} },
-  --     setup = {
-  --       eslint = function()
-  --         require("lazyvim.util").on_attach(function(client)
-  --           if client.name == "eslint" then
-  --             client.server_capabilities.documentFormattingProvider = true
-  --           elseif client.name == "tsserver" then
-  --             client.server_capabilities.documentFormattingProvider = false
-  --           end
-  --         end)
-  --       end,
-  --     },
-  --   },
-  -- },
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
@@ -312,6 +303,7 @@ return {
 
       local set_keymap = utils.set_n_keymap
 
+      set_keymap("gp", "<nop>", "+~Goto preview")
       set_keymap("gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", "Go to definition preview")
       set_keymap(
         "gpt",
@@ -327,26 +319,26 @@ return {
       set_keymap("gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", "Go to references preview")
     end,
   },
-  {
-    -- Not needed anymore with nvim-0.10.0
-    {
-      "lvimuser/lsp-inlayhints.nvim",
-      branch = "anticonceal",
-      event = "LspAttach",
-      opts = {},
-      config = function(_, opts)
-        require("lsp-inlayhints").setup(opts)
-        vim.api.nvim_create_autocmd("LspAttach", {
-          group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
-          callback = function(args)
-            if not (args.data and args.data.client_id) then
-              return
-            end
-            local client = vim.lsp.get_client_by_id(args.data.client_id)
-            require("lsp-inlayhints").on_attach(client, args.buf)
-          end,
-        })
-      end,
-    },
-  },
+  -- {
+  --   -- Not needed anymore with nvim-0.10.0
+  --   {
+  --     "lvimuser/lsp-inlayhints.nvim",
+  --     branch = "anticonceal",
+  --     event = "LspAttach",
+  --     opts = {},
+  --     config = function(_, opts)
+  --       require("lsp-inlayhints").setup(opts)
+  --       vim.api.nvim_create_autocmd("LspAttach", {
+  --         group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
+  --         callback = function(args)
+  --           if not (args.data and args.data.client_id) then
+  --             return
+  --           end
+  --           local client = vim.lsp.get_client_by_id(args.data.client_id)
+  --           require("lsp-inlayhints").on_attach(client, args.buf)
+  --         end,
+  --       })
+  --     end,
+  --   },
+  -- },
 }

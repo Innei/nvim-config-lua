@@ -21,8 +21,13 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
     event = "VeryLazy",
+    keys = {
+      {
+        [[\]],
+        "<cmd>Neotree reveal<cr>",
+      },
+    },
     opts = function(_, opts)
-      vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
       vim.cmd([[nnoremap <C-b> :Neotree toggle<cr>]])
       opts.filesystem = {
         filtered_items = {
