@@ -104,18 +104,19 @@ return {
         },
 
         defaults = {
-          file_ignore_patterns = {
-            ".git/",
-            ".cache",
-            "%.o",
-            "%.a",
-            "%.out",
-            "%.class",
-            "%.pdf",
-            "%.mkv",
-            "%.mp4",
-            "%.zip",
-          },
+          -- dont ignore will cause lsp to not work
+          -- file_ignore_patterns = {
+          -- ".git",
+          -- ".cache",
+          -- "%.o",
+          -- "%.a",
+          -- "%.out",
+          -- "%.class",
+          -- "%.pdf",
+          -- "%.mkv",
+          -- "%.mp4",
+          -- "%.zip",
+          -- },
 
           git_worktrees = vim.g.git_worktrees,
           path_display = { "truncate" },

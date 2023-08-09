@@ -111,11 +111,11 @@ return {
       --   },
       -- })
 
-      opts.servers.tailwindcss = vim.tbl_extend("force", opts.servers.tailwindcss, {
-        root_dir = function(...)
-          return require("lspconfig.util").root_pattern(".git")(...)
-        end,
-      })
+      -- opts.servers.tailwindcss = vim.tbl_extend("force", opts.servers.tailwindcss, {
+      --   root_dir = function(...)
+      --     return require("lspconfig.util").root_pattern(".git")(...)
+      --   end,
+      -- })
     end,
   },
   {
