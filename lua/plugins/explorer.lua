@@ -29,6 +29,12 @@ return {
     },
     opts = function(_, opts)
       vim.cmd([[nnoremap <C-b> :Neotree toggle<cr>]])
+      opts.sync_root_with_cwd = true
+      opts.respect_buf_cwd = true
+      opts.update_focused_file = {
+        enable = true,
+        update_root = true,
+      }
       opts.filesystem = {
         filtered_items = {
           visible = true, -- when true, they will just be displayed differently than normal items

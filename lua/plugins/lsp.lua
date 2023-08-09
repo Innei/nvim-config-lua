@@ -89,8 +89,10 @@ return {
       }
 
       opts.servers.tsserver = vim.tbl_extend("force", opts.servers.tsserver, {
-        root_dir = function(...)
-          return require("lspconfig.util").root_pattern(".git")(...)
+        root_dir = function(fname)
+          local util = require("lspconfig.util")
+          return util.root_pattern(".git")(fname)
+            or util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(fname)
         end,
       })
 
@@ -214,6 +216,9 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
+
+      opts.root_dir = require("null-ls.utils").root_pattern(".git")
+
       opts.sources = vim.list_extend(opts.sources, {
         -- nls.builtins.diagnostics.proselint,
         -- nls.builtins.diagnostics.write_good,

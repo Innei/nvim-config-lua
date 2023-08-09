@@ -64,6 +64,7 @@ return {
             end,
             pinned = true,
             open = "Neotree position=top buffers",
+            size = { height = 0.2 },
           },
 
           {
@@ -76,7 +77,7 @@ return {
             open = function()
               vim.api.nvim_input("<esc><space>e")
             end,
-            size = { height = 0.5 },
+            size = { height = 0.8 },
           },
           { title = "Neotest Summary", ft = "neotest-summary" },
           "neo-tree",
