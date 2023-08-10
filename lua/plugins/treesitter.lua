@@ -7,7 +7,7 @@ return {
         keymaps = {
           init_selection = "<CR>",
           node_incremental = "<CR>",
-          scope_incremental = false,
+          scope_incremental = "<C-n>",
           node_decremental = "<bs>",
         },
       }
@@ -18,6 +18,11 @@ return {
       opts.context_commentstring = {
         enable_autocmd = false,
       }
+
+      vim.list_extend(opts.ensure_installed, {
+        "prisma",
+        "dockerfile",
+      })
     end,
   },
   {
@@ -56,7 +61,7 @@ return {
       local tscontext = require("treesitter-context")
       tscontext.setup({
         enable = true,
-        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit
+        max_lines = 5, -- How many lines the window should span. Values <= 0 mean no limit
         min_window_height = 5, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
         line_numbers = true,
         multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
