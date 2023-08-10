@@ -96,26 +96,26 @@ return {
         end,
       })
 
-      -- opts.servers.tsserver.settings = vim.tbl_extend("force", opts.servers.tsserver.settings, {
-      --   typescript = {
-      --     inlayHints = {
-      --       includeInlayParameterNameHints = "all",
-      --       includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-      --       includeInlayFunctionParameterTypeHints = true,
-      --       includeInlayVariableTypeHints = true,
-      --       includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-      --       includeInlayPropertyDeclarationTypeHints = false,
-      --       includeInlayFunctionLikeReturnTypeHints = true,
-      --       includeInlayEnumMemberValueHints = true,
-      --     },
-      --   },
-      -- })
+      opts.servers.tsserver.settings = vim.tbl_extend("force", opts.servers.tsserver.settings, {
+        typescript = {
+          inlayHints = {
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            includeInlayFunctionParameterTypeHints = false,
+            includeInlayVariableTypeHints = false,
+            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+            includeInlayPropertyDeclarationTypeHints = false,
+            includeInlayFunctionLikeReturnTypeHints = false,
+            includeInlayEnumMemberValueHints = true,
+          },
+        },
+      })
 
-      -- opts.servers.tailwindcss = vim.tbl_extend("force", opts.servers.tailwindcss, {
-      --   root_dir = function(...)
-      --     return require("lspconfig.util").root_pattern(".git")(...)
-      --   end,
-      -- })
+      opts.servers.tailwindcss = vim.tbl_extend("force", opts.servers.tailwindcss, {
+        root_dir = function(...)
+          return require("lspconfig.util").root_pattern(".git")(...)
+        end,
+      })
     end,
   },
   {

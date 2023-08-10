@@ -1,5 +1,4 @@
 return {
-  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -54,7 +53,7 @@ return {
       wk.register({
         -- -F fixed string
         ["<d-p>"] = {
-          "<cmd>Telescope fd find_command=rg,--ignore,--hidden,--files,-F<cr>",
+          "<cmd>Telescope smart_open<cr>",
           "find file",
         },
 
@@ -73,7 +72,15 @@ return {
 
       local actions = require("telescope.actions")
       require("telescope").setup({
+
         extensions = {
+          smart_open = {
+            show_scores = false,
+            ignore_patterns = { "*.git/*", "*/tmp/*" },
+            match_algorithm = "fzf",
+            disable_devicons = false,
+            cwd_only = true,
+          },
           fzf = {
             fuzzy = true, -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
@@ -118,6 +125,7 @@ return {
           -- "%.zip",
           -- },
 
+          -- file_sorter = require("util.sorter").frecency_sorter,
           git_worktrees = vim.g.git_worktrees,
           path_display = { "truncate" },
           sorting_strategy = "ascending",
@@ -144,6 +152,30 @@ return {
       require("telescope").load_extension("file_browser")
       require("telescope").load_extension("undo")
       require("telescope").load_extension("bookmarks")
+    end,
+  },
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  {
+    "danielfalk/smart-open.nvim",
+    branch = "0.2.x",
+    event = "VeryLazy",
+    config = function()
+      require("telescope").load_extension("smart_open")
+    end,
+    dependencies = {
+      "kkharji/sqlite.lua",
+      "nvim-telescope/telescope.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      -- Optional.  If installed, native fzy will be used when match_algorithm is fzy
+      -- { "nvim-telescope/telescope-fzy-native.nvim" },
+    },
+  },
+  {
+    "prochri/telescope-all-recent.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    event = "VeryLazy",
+    config = function()
+      require("telescope-all-recent").setup({})
     end,
   },
 }
