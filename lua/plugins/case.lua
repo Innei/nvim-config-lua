@@ -1,5 +1,5 @@
 return {
-  "johmsalas/text-case.nvim",
+  "xlboy/text-case.nvim",
 
   event = "BufRead",
   dependencies = { "nvim-telescope/telescope.nvim" },

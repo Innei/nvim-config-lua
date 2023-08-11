@@ -1,6 +1,7 @@
 return {
   "luukvbaal/statuscol.nvim",
   event = "BufReadPost",
+  enabled = false,
   init = function()
     vim.opt_global.foldcolumn = "1"
 
