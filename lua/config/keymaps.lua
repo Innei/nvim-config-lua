@@ -253,18 +253,18 @@ if vim.g.vscode == nil then
     },
     {
       from = "<D-z>",
-      to = "<ESC>ui",
-      mode = mode_i,
+      to = function()
+        vim.cmd([[undo]])
+      end,
+      mode = mode_ni,
     },
 
     {
       from = "<D-S-z>",
-      to = "<ESC><C-r>i",
-      mode = mode_i,
-    },
-    {
-      from = "<D-z>",
-      to = "u",
+      to = function()
+        vim.cmd([[redo]])
+      end,
+      mode = mode_ni,
     },
     {
       from = "<S-D-p>",
