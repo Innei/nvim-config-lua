@@ -91,13 +91,13 @@ return {
           },
           opts = { skip = true },
         },
-        {
-          filter = {
-            event = "msg_show",
-            kind = { "echo" },
-          },
-          opts = { skip = true },
-        },
+        -- {
+        --   filter = {
+        --     event = "msg_show",
+        --     kind = { "echo" },
+        --   },
+        --   opts = { skip = true },
+        -- },
         {
           filter = {
             event = "msg_show",

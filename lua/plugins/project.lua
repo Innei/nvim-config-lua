@@ -17,6 +17,7 @@ return {
   { import = "lazyvim.plugins.extras.util.project" },
   {
     "ahmedkhalf/project.nvim",
+    event = "VeryLazy",
     -- enabled = false,
     opts = {
       -- Manual mode doesn't automatically change your root directory, so you have
@@ -62,6 +63,7 @@ return {
 
   {
     "imNel/monorepo.nvim",
+    enabled = false,
     config = function()
       require("monorepo").setup({
         -- Your config here!

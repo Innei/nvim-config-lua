@@ -127,7 +127,19 @@ return {
 
           -- file_sorter = require("util.sorter").frecency_sorter,
           git_worktrees = vim.g.git_worktrees,
-          path_display = { "truncate" },
+          dynamic_preview_title = true,
+          -- path_display = {
+          --   shorten = {
+          --     len = 3,
+          --     exclude = { 1, -1 },
+          --   },
+          --
+          --   truncate = true,
+          -- },
+          path_display = function(opts, path)
+            local tail = require("telescope.utils").path_tail(path)
+            return string.format("%s\n%s", tail, path)
+          end,
           sorting_strategy = "ascending",
           layout_config = {
             horizontal = { prompt_position = "top", preview_width = 0.55 },
