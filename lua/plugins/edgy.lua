@@ -103,7 +103,7 @@ return {
       }
       local Util = require("lazyvim.util")
       if Util.has("symbols-outline.nvim") then
-        table.insert(opts.left, {
+        table.insert(opts.right, {
           title = "Outline",
           ft = "Outline",
           pinned = true,
