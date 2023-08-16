@@ -382,6 +382,11 @@ if vim.g.vscode == nil then
       end,
       mode = mode_ni,
     },
+    {
+      from = "<D-backspace>",
+      to = "<esc>cc",
+      mode = mode_i,
+    },
   })
 end
 

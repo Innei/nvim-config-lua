@@ -78,6 +78,7 @@ return {
 
   {
     "HiPhish/rainbow-delimiters.nvim",
+    enabled = false,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = { "BufReadPost", "BufNewFile" },
     config = function()
@@ -89,6 +90,8 @@ return {
           lua = "rainbow-blocks",
           html = "rainbow-tags",
           javascript = "rainbow-delimiters-react",
+          javascriptreact = "rainbow-delimiters-react",
+          typescriptreact = "rainbow-delimiters-react",
         },
         strategy = {
           [""] = rainbow.strategy["global"],

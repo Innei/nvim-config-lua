@@ -4,12 +4,17 @@ return {
     name = "catppuccin",
     priority = 1000,
     config = function()
+      local transparent_background = true
+      if vim.g.neovide then
+        transparent_background = false
+      end
       require("catppuccin").setup({
         flavour = "mocha", -- latte, frappe, macchiato, mocha
         background = { -- :h background
           light = "latte",
           dark = "mocha",
         },
+        no_bold = true,
 
         custom_highlights = function(colors)
           local macchiato = require("catppuccin.palettes").get_palette("macchiato")
@@ -23,7 +28,7 @@ return {
             },
           }
         end,
-        transparent_background = true, -- disables setting the background color.
+        transparent_background = transparent_background, -- disables setting the background color.
 
         integrations = {
           nvimtree = true,
@@ -37,6 +42,7 @@ return {
           mini = true,
           flash = true,
           rainbow_delimiters = true,
+
           -- cmp = true,
           native_lsp = {
             enabled = true,

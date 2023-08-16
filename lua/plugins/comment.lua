@@ -27,4 +27,21 @@ return {
     "echasnovski/mini.comment",
     enabled = false,
   },
+  {
+    "danymat/neogen",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("neogen").setup({ snippet_engine = "luasnip" })
+    end,
+    cmd = "Neogen",
+    keys = {
+      {
+        "<leader>ng",
+        function()
+          require("neogen").generate({})
+        end,
+        desc = "Neogen",
+      },
+    },
+  },
 }

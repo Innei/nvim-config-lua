@@ -7,8 +7,14 @@ return {
     end,
     vscode = true,
   },
+  -- {
+  --   "tpope/vim-sleuth",
+  --   event = "InsertEnter",
+  -- },
+
+  -- save if not folder exists
   {
-    "tpope/vim-sleuth",
-    event = "InsertEnter",
+    "jghauser/mkdir.nvim",
+    event = "VeryLazy",
   },
 }

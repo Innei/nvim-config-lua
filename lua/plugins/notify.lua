@@ -87,6 +87,11 @@ return {
               {
                 find = "not have parser for",
               },
+
+              -- ts
+              {
+                find = "_ts_parse_query",
+              },
             },
           },
           opts = { skip = true },
