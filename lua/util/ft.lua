@@ -24,6 +24,8 @@ M.exclude_ft_table = {
   noice = true,
   text = true,
   dropbar_menu = true,
+
+  DressingInput = true,
 }
 
 local exclude_ft_list = {}

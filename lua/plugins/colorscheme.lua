@@ -42,6 +42,7 @@ return {
           mini = true,
           flash = true,
           rainbow_delimiters = true,
+          barbar = true,
 
           -- cmp = true,
           native_lsp = {
