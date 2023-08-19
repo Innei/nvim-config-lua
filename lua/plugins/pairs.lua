@@ -46,35 +46,13 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
-    enabled = false,
-    event = "FileType .tsx,.jsx,.html,.vue",
+    enabled = true,
+    event = "FileType typescriptreact,javascriptreact,vue,html,xml,astro",
     config = function()
-      local filetypes = {
-        "html",
-        "javascript",
-        "typescript",
-        "javascriptreact",
-        "typescriptreact",
-        "svelte",
-        "vue",
-        "tsx",
-        "jsx",
-        "rescript",
-        "xml",
-        "php",
-        "markdown",
-        "astro",
-        "glimmer",
-        "handlebars",
-        "hbs",
-      }
-      require("nvim-ts-autotag").setup({
+      require("nvim-treesitter.configs").setup({
         autotag = {
           enable = true,
-          enable_rename = true,
-          enable_close = true,
           enable_close_on_slash = false,
-          filetypes = filetypes,
         },
       })
     end,
@@ -87,11 +65,11 @@ return {
     config = function()
       -- may set any options here
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
-      -- require("nvim-treesitter.configs").setup({
-      --   matchup = {
-      --     enable = true, -- mandatory, false will disable the whole extension
-      --   },
-      -- })
+      require("nvim-treesitter.configs").setup({
+        matchup = {
+          enable = true, -- mandatory, false will disable the whole extension
+        },
+      })
     end,
   },
 }

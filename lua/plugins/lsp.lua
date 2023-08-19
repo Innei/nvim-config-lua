@@ -236,7 +236,7 @@ return {
   },
   {
     "nvimdev/lspsaga.nvim",
-    event = "BufRead",
+    event = "LspAttach",
     config = function()
       require("lspsaga").setup({
         ui = {
@@ -267,7 +267,7 @@ return {
   },
   {
     "dnlhc/glance.nvim",
-    event = "BufRead",
+    event = "LspAttach",
     config = function()
       require("glance").setup({
         -- your configuration
@@ -282,6 +282,8 @@ return {
 
   {
     "rmagatti/goto-preview",
+    event = "LspAttach",
+    enabled = false,
     config = function()
       require("goto-preview").setup({
         width = 120, -- Width of the floating window
@@ -326,6 +328,7 @@ return {
   },
   {
     "antosha417/nvim-lsp-file-operations",
+    event = "LspAttach",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-neo-tree/neo-tree.nvim",
@@ -363,7 +366,6 @@ return {
     "simrat39/symbols-outline.nvim",
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose" },
     keys = {
-
       { "<leader>T", "<cmd>SymbolsOutline<CR>", "SymbolsOutline" },
     },
     config = function()

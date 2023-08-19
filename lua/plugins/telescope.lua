@@ -178,8 +178,6 @@ return {
       "kkharji/sqlite.lua",
       "nvim-telescope/telescope.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      -- Optional.  If installed, native fzy will be used when match_algorithm is fzy
-      -- { "nvim-telescope/telescope-fzy-native.nvim" },
     },
   },
   {

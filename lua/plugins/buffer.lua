@@ -2,7 +2,7 @@ return {
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
-    enabled = false,
+    enabled = true,
     keys = {
       { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
       { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
@@ -21,24 +21,70 @@ return {
         end,
         desc = "Delete buffer",
       },
+
+      {
+        "<leader>bs",
+        function()
+          vim.cmd([[BufferLinePick]])
+        end,
+
+        desc = "Pick buffer",
+      },
+
+      {
+        "<leader>bS",
+        function()
+          vim.cmd([[BufferLinePickClose]])
+        end,
+        desc = "Pick buffer and close",
+      },
     },
 
-    -- config = function()
-    --   require("bufferline").setup({
-    --     options = {
-    --       hover = {
-    --
-    --         delay = 200,
-    --         reveal = { "close" },
-    --         enabled = true,
-    --       },
-    --       style_preset = "slant",
-    --     },
-    --   })
-    -- end,
+    config = function()
+      vim.cmd([[
+  nnoremap <silent><A-1> <Cmd>BufferLineGoToBuffer 1<CR>
+  nnoremap <silent><A-2> <Cmd>BufferLineGoToBuffer 2<CR>
+  nnoremap <silent><A-3> <Cmd>BufferLineGoToBuffer 3<CR>
+  nnoremap <silent><A-4> <Cmd>BufferLineGoToBuffer 4<CR>
+  nnoremap <silent><A-5> <Cmd>BufferLineGoToBuffer 5<CR>
+  nnoremap <silent><A-6> <Cmd>BufferLineGoToBuffer 6<CR>
+  nnoremap <silent><A-7> <Cmd>BufferLineGoToBuffer 7<CR>
+  nnoremap <silent><A-8> <Cmd>BufferLineGoToBuffer 8<CR>
+  nnoremap <silent><A-9> <Cmd>BufferLineGoToBuffer 9<CR>
+  ]])
+
+      vim.o.mousemoveevent = true
+      require("bufferline").setup({
+
+        options = {
+          always_show_bufferline = true,
+          indicator = {
+            icon = "▎", -- this should be omitted if indicator style is not 'icon'
+            style = "underline",
+          },
+          diagnostics_indicator = function(count, level, diagnostics_dict, context)
+            -- only show warning and error
+            local s = " "
+            for e, n in pairs(diagnostics_dict) do
+              local sym = e == "error" and " " or (e == "warning" and " " or "")
+              s = s .. sym .. n
+            end
+            return s
+          end,
+          hover = {
+
+            delay = 200,
+            reveal = { "close" },
+            enabled = true,
+          },
+          style_preset = "slant",
+        },
+      })
+    end,
   },
   {
     "romgrk/barbar.nvim",
+    enabled = false,
     event = "VeryLazy",
     keys = {
       { "<leader>bq", "<Cmd>BufferCloseAllButCurrent<CR>", desc = "Delete other buffers" },
@@ -90,7 +136,8 @@ return {
           -- Or, specify the text used for the offset:
           undotree = { text = "undotree" },
           -- Or, specify the event which the sidebar executes when leaving:
-          ["neo-tree"] = { event = "BufWipeout" },
+          -- ["neo-tree"] = { event = "BufWipeout" },
+          ["neo-tree"] = true,
           -- Or, specify both
           Outline = { event = "BufWinLeave", text = "symbols-outline" },
         },
