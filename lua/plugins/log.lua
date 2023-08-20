@@ -1,6 +1,6 @@
 return {
   "rareitems/printer.nvim",
-  event = "BufEnter",
+  event = "VeryLazy",
   config = function()
     require("printer").setup({
       keymap = "gl", -- Plugin doesn't have any keymaps by default

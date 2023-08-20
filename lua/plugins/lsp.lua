@@ -120,15 +120,15 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    event = "BufEnter",
+    event = "VeryLazy",
     dependencies = { "hrsh7th/cmp-emoji", "zbirenbaum/copilot.lua" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local luasnip = require("luasnip")
       local cmp = require("cmp")
 
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      -- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      -- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
       opts.formatting.format = function(entry, item)
         item.kind = icons[item.kind] or item.kind

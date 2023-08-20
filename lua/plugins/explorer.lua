@@ -3,8 +3,30 @@ return {
     "nvim-telescope/telescope-file-browser.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    keys = {
+      {
+        "R",
+        function()
+          vim.cmd([[Telescope file_browser]])
+        end,
+      },
+      desc = "Telescope File Browser",
+    },
     config = function()
-      vim.api.nvim_set_keymap("n", "R", ":Telescope file_browser<CR>", { noremap = true })
+      require("telescope").setup({
+        file_browser = {
+          -- theme = "ivy",
+          -- disables netrw and use telescope-file-browser in its place
+          mappings = {
+            ["i"] = {
+              -- your custom insert mode mappings
+            },
+            ["n"] = {
+              -- your custom normal mode mappings
+            },
+          },
+        },
+      })
     end,
   },
   {
@@ -24,11 +46,16 @@ return {
     keys = {
       {
         [[\]],
-        "<cmd>Neotree reveal<cr>",
+        function()
+          vim.cmd([[Neotree reveal]])
+        end,
+        desc = "Neotree reveal",
       },
     },
     opts = function(_, opts)
-      vim.cmd([[nnoremap <C-b> :Neotree toggle<cr>]])
+      vim.keymap.set({ "n", "i" }, "<C-b>", function()
+        vim.cmd([[Neotree toggle]])
+      end, { silent = true })
       opts.sync_root_with_cwd = true
       opts.respect_buf_cwd = true
       opts.update_focused_file = {
@@ -66,26 +93,23 @@ return {
         },
       }
 
-      opts.git_status = {
-        window = {
-          position = "float",
-          mappings = {
-            ["A"] = "git_add_all",
-            ["gu"] = "git_unstage_file",
-            ["ga"] = "git_add_file",
-            ["gr"] = "git_revert_file",
-            ["gc"] = "git_commit",
-            ["gp"] = "git_push",
-            ["gg"] = "git_commit_and_push",
-          },
-        },
+      opts.commands = {
+        reveal_in_finder = function(state) -- define a global "hello world" function
+          local node = state.tree:get_node()
+          if node then
+            vim.fn.execute("!open -R " .. node.path)
+          end
+        end,
       }
 
-      opts.mappings = {
+      opts.filesystem.window = {}
+      opts.filesystem.window.mappings = {
         ["<space>"] = {
-          "toggle_node",
-          nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+          "toggle_preview",
+          nowait = true, -- disable `nowait` if you have existing combos starting with this char that you want to use,
+          config = { use_float = true },
         },
+        ["R"] = "reveal_in_finder",
         ["<2-LeftMouse>"] = "open",
         ["<leftrelease>"] = { "toggle_preview", config = { use_float = false } },
         ["<cr>"] = "open",
@@ -128,11 +152,12 @@ return {
         --}
         ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
         ["q"] = "close_window",
-        ["R"] = "refresh",
+        -- ["R"] = "refresh",
         ["?"] = "show_help",
         ["<"] = "prev_source",
         [">"] = "next_source",
       }
+      return opts
     end,
   },
 }

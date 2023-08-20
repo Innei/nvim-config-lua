@@ -1,11 +1,10 @@
 return {
   {
     "m4xshen/autoclose.nvim",
-    event = "BufEnter",
+    event = "BufReadPost",
     enabled = false,
     config = function()
       require("autoclose").setup({
-
         keys = {
           ["("] = { escape = false, close = true, pair = "()", disabled_filetypes = {} },
           ["["] = { escape = false, close = true, pair = "[]", disabled_filetypes = {} },
@@ -21,9 +20,10 @@ return {
           ["`"] = { escape = true, close = true, pair = "``", disabled_filetypes = {} },
         },
         options = {
-          disabled_filetypes = require("util.ft").exclude_ft,
-          disable_when_touch = true,
-          pair_spaces = true,
+          -- disabled_filetypes = require("util.ft").exclude_ft,
+          disable_when_touch = false,
+          touch_regex = "[%w(%[{]",
+          pair_spaces = false,
           auto_indent = true,
         },
       })
@@ -32,7 +32,7 @@ return {
   {
     "echasnovski/mini.pairs",
     event = "VeryLazy",
-    opts = {},
+    -- opts = {},
     enabled = false,
   },
   {

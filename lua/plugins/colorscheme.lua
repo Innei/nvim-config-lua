@@ -31,7 +31,7 @@ return {
         transparent_background = transparent_background, -- disables setting the background color.
 
         integrations = {
-          nvimtree = true,
+          nvimtree = false,
           neotree = true,
           gitsigns = true,
           illuminate = true,
@@ -41,8 +41,8 @@ return {
           treesitter_context = true,
           mini = true,
           flash = true,
-          rainbow_delimiters = true,
-          barbar = true,
+          rainbow_delimiters = false,
+          barbar = false,
 
           -- cmp = true,
           native_lsp = {

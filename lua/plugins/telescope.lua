@@ -2,73 +2,60 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      { "nvim-telescope/telescope-fzf-native.nvim", enabled = vim.fn.executable("make") == 1, build = "make" },
-      { "folke/which-key.nvim" },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        enabled = vim.fn.executable("make") == 1,
+        build = "make",
+      }, -- { "folke/which-key.nvim" },
       { "debugloop/telescope-undo.nvim" },
       { "nvim-lua/plenary.nvim" },
-      {
-        "tomasky/bookmarks.nvim",
-      },
+      { "tomasky/bookmarks.nvim" },
     },
     config = function(_, opts)
-      local wk = require("which-key")
+      local map = vim.keymap.set
+      local opts = { noremap = true, silent = true }
 
-      wk.register({
-        ["<leader>t"] = {
-          name = "telescope",
-          a = {
-            function()
-              require("telescope.builtin").find_files({
-                no_ignore = true,
-                hidden = true,
-                prompt_title = "All Files",
-              })
-            end,
-            "All files",
-          },
-          f = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>", "find files" },
-          b = { "<cmd>Telescope buffers<cr>", "buffers" },
-          h = { "<cmd>Telescope help_tags<cr>", "help tags" },
-          m = { "<cmd>Telescope marks<cr>", "marks" },
-          r = { "<cmd>Telescope registers<cr>", "registers" },
-          t = { "<cmd>Telescope treesitter<cr>", "treesitter" },
-          w = { "<cmd>Telescope grep_string<cr>", "grep string" },
-          o = { "<cmd>Telescope oldfiles<cr>", "oldfiles" },
-          g = {
-            name = "git",
-            b = { "<cmd>Telescope git_branches<cr>", "branches" },
-            c = { "<cmd>Telescope git_commits<cr>", "commits" },
-            s = { "<cmd>Telescope git_status<cr>", "status" },
-            h = { "<cmd>Telescope git_stash<cr>", "stash" },
-            p = { "<cmd>Telescope git_files<cr>", "git files" },
-          },
-        },
+      -- Telescope key mappings for files and system tools
+      map("n", "<leader>ta", function()
+        require("telescope.builtin").find_files({
+          no_ignore = true,
+          hidden = true,
+          prompt_title = "All Files",
+        })
+      end, vim.tbl_extend("force", opts, { desc = "All files" }))
 
-        ["<c-f>"] = {
-          "<cmd>Telescope live_grep find_command=rg,--ignore,--hidden,-F<cr>",
-          "live grep",
-        },
-      })
+      local telescope_cmds = {
+        ["<leader>tf"] = "Telescope find_files find_command=rg,--ignore,--hidden,--files",
+        ["<leader>tb"] = "Telescope buffers",
+        ["<leader>th"] = "Telescope help_tags",
+        ["<leader>tm"] = "Telescope marks",
+        ["<leader>tr"] = "Telescope registers",
+        ["<leader>tt"] = "Telescope treesitter",
+        ["<leader>tg"] = "Telescope git_status",
+        ["<leader>tgp"] = "Telescope git_files",
+        ["<leader>tgc"] = "Telescope git_commits",
+        ["<leader>tgb"] = "Telescope git_branches",
+        ["<leader>tgs"] = "Telescope git_status",
+        ["<leader>tgh"] = "Telescope git_stash",
+      }
 
-      wk.register({
-        -- -F fixed string
-        ["<d-p>"] = {
-          "<cmd>Telescope smart_open<cr>",
-          "find file",
-        },
+      for k, cmd in pairs(telescope_cmds) do
+        map("n", k, "<cmd>" .. cmd .. "<cr>", vim.tbl_extend("force", opts, { desc = cmd }))
+      end
 
-        ["<c-p>"] = {
-          "<cmd>Telescope fd find_command=rg,--ignore,--hidden,--files,-F<cr>",
-          "find file",
-        },
+      -- Telescope key mappings for general searching
+      local modes = { "n", "l" }
+      local search_cmds = {
+        ["<d-p>"] = "Telescope smart_open",
+        ["<c-p>"] = "Telescope fd find_command=rg,--ignore,--hidden,--files,-F",
+        ["<d-,>"] = "Telescope live_grep find_command=rg,--ignore,--hidden,--files,-F",
+      }
 
-        ["<d-,>"] = {
-          "<cmd>Telescope live_grep find_command=rg,--ignore,--hidden,--files,-F<cr>",
-          "live grep",
-        },
-      }, {
-        mode = { "n", "i" },
-      })
+      for k, cmd in pairs(search_cmds) do
+        for _, mode in ipairs(modes) do
+          map(mode, k, "<cmd>" .. cmd .. "<cr>", vim.tbl_extend("force", opts, { desc = cmd }))
+        end
+      end
 
       local actions = require("telescope.actions")
       require("telescope").setup({
@@ -88,25 +75,11 @@ return {
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
           },
-          file_browser = {
-            -- theme = "ivy",
-            -- disables netrw and use telescope-file-browser in its place
-            mappings = {
-              ["i"] = {
-                -- your custom insert mode mappings
-              },
-              ["n"] = {
-                -- your custom normal mode mappings
-              },
-            },
-          },
           undo = {
             use_delta = true,
             side_by_side = true,
             layout_strategy = "vertical",
-            layout_config = {
-              preview_height = 0.8,
-            },
+            layout_config = { preview_height = 0.8 },
           },
         },
 
@@ -129,10 +102,7 @@ return {
           git_worktrees = vim.g.git_worktrees,
           dynamic_preview_title = true,
           path_display = {
-            shorten = {
-              len = 3,
-              exclude = { 1, -1 },
-            },
+            shorten = { len = 3, exclude = { 1, -1 } },
 
             truncate = true,
           },
@@ -142,7 +112,10 @@ return {
           -- end,
           sorting_strategy = "ascending",
           layout_config = {
-            horizontal = { prompt_position = "top", preview_width = 0.55 },
+            horizontal = {
+              prompt_position = "top",
+              preview_width = 0.55,
+            },
             vertical = { mirror = false },
             width = 0.87,
             height = 0.80,
@@ -179,6 +152,14 @@ return {
       "nvim-telescope/telescope.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
+  },
+  {
+    "prochri/telescope-all-recent.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    event = "VeryLazy",
+    config = function()
+      require("telescope-all-recent").setup({})
+    end,
   },
   {
     "prochri/telescope-all-recent.nvim",
