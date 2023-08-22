@@ -1,6 +1,7 @@
 local m = { noremap = true }
 return {
   "ibhagwan/fzf-lua",
+  enabled = false,
   keys = { "<c-r>" },
   config = function()
     local fzf = require("fzf-lua")
