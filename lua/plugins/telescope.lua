@@ -6,10 +6,8 @@ return {
         "nvim-telescope/telescope-fzf-native.nvim",
         enabled = vim.fn.executable("make") == 1,
         build = "make",
-      }, -- { "folke/which-key.nvim" },
-      { "debugloop/telescope-undo.nvim" },
+      },
       { "nvim-lua/plenary.nvim" },
-      { "tomasky/bookmarks.nvim" },
     },
     config = function(_, opts)
       local map = vim.keymap.set
@@ -46,7 +44,7 @@ return {
       -- Telescope key mappings for general searching
       local modes = { "n", "l" }
       local search_cmds = {
-        ["<d-p>"] = "Telescope smart_open",
+        ["<d-p>"] = "lua require('telescope').extensions.smart_open.smart_open({ cwd_only = true })",
         ["<c-p>"] = "Telescope fd find_command=rg,--ignore,--hidden,--files,-F",
         ["<d-,>"] = "Telescope live_grep find_command=rg,--ignore,--hidden,--files,-F",
       }
@@ -59,7 +57,6 @@ return {
 
       local actions = require("telescope.actions")
       require("telescope").setup({
-
         extensions = {
           smart_open = {
             show_scores = false,
@@ -74,12 +71,6 @@ return {
             override_file_sorter = true, -- override the file sorter
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
-          },
-          undo = {
-            use_delta = true,
-            side_by_side = true,
-            layout_strategy = "vertical",
-            layout_config = { preview_height = 0.8 },
           },
         },
 
@@ -135,11 +126,8 @@ return {
       })
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("file_browser")
-      require("telescope").load_extension("undo")
-      require("telescope").load_extension("bookmarks")
     end,
   },
-  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   {
     "danielfalk/smart-open.nvim",
     branch = "0.2.x",
@@ -151,15 +139,8 @@ return {
       "kkharji/sqlite.lua",
       "nvim-telescope/telescope.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      { "nvim-telescope/telescope-fzy-native.nvim" },
     },
-  },
-  {
-    "prochri/telescope-all-recent.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    event = "VeryLazy",
-    config = function()
-      require("telescope-all-recent").setup({})
-    end,
   },
   {
     "prochri/telescope-all-recent.nvim",

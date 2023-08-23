@@ -185,10 +185,6 @@ return {
           end,
         }),
 
-        -- disable cr
-        -- ["<CR>"] = cmp.mapping(function(fallback)
-        --   fallback()
-        -- end),
         ["<CR>"] = cmp.mapping({
           i = function(fallback)
             if cmp.visible() then

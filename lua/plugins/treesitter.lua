@@ -2,8 +2,9 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
+      -- use wildfire.nvim
       opts.incremental_selection = {
-        enable = true,
+        enable = false,
         keymaps = {
           init_selection = "<CR>",
           node_incremental = "<CR>",
@@ -98,6 +99,14 @@ return {
           vim = rainbow.strategy["local"],
         },
       }
+    end,
+  },
+  {
+    "sustech-data/wildfire.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("wildfire").setup()
     end,
   },
 }

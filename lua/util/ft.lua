@@ -26,6 +26,8 @@ M.exclude_ft_table = {
   dropbar_menu = true,
 
   DressingInput = true,
+  NeogitStatus = true,
+  ssr = true,
 }
 
 local exclude_ft_list = {}

@@ -3,7 +3,7 @@ return {
   {
     "folke/edgy.nvim",
     event = "VeryLazy",
-    -- enabled = false,
+    enabled = false,
     keys = {
       {
         "<leader>ue",

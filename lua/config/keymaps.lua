@@ -267,18 +267,6 @@ if vim.g.vscode == nil then
       mode = mode_ni,
     },
     {
-      from = "<S-D-p>",
-      to = function()
-        vim.cmd([[Telescope]])
-      end,
-    },
-    {
-      from = "<D-f>",
-      to = function()
-        require("spectre").open_file_search({ select_word = false })
-      end,
-    },
-    {
       from = "<M-backspace>",
       to = "<C-w>",
       mode = mode_i,
@@ -310,7 +298,12 @@ if vim.g.vscode == nil then
       to = vim.lsp.buf.code_action,
       mode = mode_nv,
     },
-
+    -- {
+    --   from = "<D-f>",
+    --   to = function()
+    --     require("spectre").open_file_search({ select_word = false })
+    --   end,
+    -- },
     {
       from = "<D-f>",
       to = "<nop>",

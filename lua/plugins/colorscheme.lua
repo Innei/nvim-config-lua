@@ -43,6 +43,7 @@ return {
           flash = true,
           rainbow_delimiters = false,
           barbar = false,
+          dropbar = true,
 
           -- cmp = true,
           native_lsp = {

@@ -2,6 +2,7 @@ return {
   {
     "NvChad/nvim-colorizer.lua",
     event = "VeryLazy",
+    enabled = false,
     opts = {
       filetypes = { "*" },
       user_default_options = {
@@ -25,5 +26,27 @@ return {
       -- all the sub-options of filetypes apply to buftypes
       buftypes = {},
     },
+  },
+
+  {
+    "uga-rosa/ccc.nvim",
+    cmd = { "CccPick", "CccConvert", "CccHighlighterEnable" },
+    event = "FileType typescript,typescriptreact,javascript,javascriptreact,json,yaml",
+    keys = {
+      { "<leader>zc", "<cmd>CccConvert<cr>", desc = "Convert color" },
+      { "<leader>zp", "<cmd>CccPick<cr>", desc = "Pick Color" },
+    },
+    opts = {
+      highlighter = {
+        auto_enable = true,
+        lsp = true,
+      },
+    },
+    config = function(_, opts)
+      require("ccc").setup(opts)
+      if opts.highlighter and opts.highlighter.auto_enable then
+        vim.cmd.CccHighlighterEnable()
+      end
+    end,
   },
 }

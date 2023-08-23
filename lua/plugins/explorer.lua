@@ -62,6 +62,11 @@ return {
         enable = true,
         update_root = true,
       }
+
+      opts.window = {
+        width = 35,
+      }
+
       opts.filesystem = {
         filtered_items = {
           visible = true, -- when true, they will just be displayed differently than normal items

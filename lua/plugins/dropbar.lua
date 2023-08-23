@@ -1,8 +1,3 @@
--- nvim >= 0.10.0
-if not vim.fn.has("nvim-0.10") then
-  return {}
-end
-
 return {
   "Bekaboo/dropbar.nvim",
   -- commit = "19011d96959cd40a7173485ee54202589760caae",

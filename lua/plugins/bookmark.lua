@@ -1,7 +1,10 @@
 return {
   {
     "tomasky/bookmarks.nvim",
-    event = "BufRead",
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
     config = function()
       vim.opt.signcolumn = "yes:2"
       require("bookmarks").setup({
@@ -23,6 +26,8 @@ return {
           map("n", "ml", bm.bookmark_list) -- show marked file list in quickfix window
         end,
       })
+
+      require("telescope").load_extension("bookmarks")
     end,
   },
 }

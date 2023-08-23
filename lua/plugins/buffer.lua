@@ -57,6 +57,15 @@ return {
       require("bufferline").setup({
 
         options = {
+
+          offsets = {
+            {
+              filetype = "neo-tree",
+              text = "Neo-tree",
+              highlight = "Directory",
+              text_align = "left",
+            },
+          },
           always_show_bufferline = true,
           indicator = {
             icon = "▎", -- this should be omitted if indicator style is not 'icon'
@@ -73,7 +82,7 @@ return {
           end,
           hover = {
 
-            delay = 200,
+            delay = 36,
             reveal = { "close" },
             enabled = true,
           },
