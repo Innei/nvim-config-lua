@@ -32,16 +32,24 @@ return {
 
     command_center.add({
       {
+        desc = "Restart lsp server",
+        cmd = "<CMD>LspRestart<CR>",
+      },
+      {
+        desc = "Reload Buffer",
+        cmd = "<CMD>bufdo e<CR>zz",
+      },
+      {
+        desc = "Reload Window",
+        cmd = "<CMD>windo e<CR>zz",
+      },
+      {
         desc = "Advanced git search",
         cmd = "<CMD>AdvancedGitSearch<CR>",
       },
       {
         desc = "Neogit",
         cmd = "<CMD>Neogit<CR>",
-      },
-      {
-        desc = "Restart lsp server",
-        cmd = "<CMD>LspRestart<CR>",
       },
       {
         desc = "Refresh TSHighlight",
@@ -69,10 +77,10 @@ return {
             command_center.component.DESC,
             command_center.component.KEYS,
           },
-          sort_by = {
-            command_center.component.DESC,
-            command_center.component.KEYS,
-          },
+          -- sort_by = {
+          --   command_center.component.DESCRIPTION,
+          --   command_center.component.KEYS,
+          -- },
           auto_replace_desc_with_cmd = false,
         },
       },
