@@ -176,6 +176,14 @@ local nmappings = {
     to = "<nop>",
   },
 
+  {
+    from = "<leader>tc",
+    to = function()
+      vim.cmd([[tabclose]])
+    end,
+    desc = "Tab close",
+  },
+
   -- vscode like mapping
   {
     from = "<S-up>",
@@ -384,7 +392,12 @@ if vim.g.vscode == nil then
 end
 
 for _, mapping in ipairs(nmappings) do
-  vim.keymap.set(mapping.mode or "n", mapping.from, mapping.to, { noremap = mapping.noremap or true, silent = true })
+  vim.keymap.set(
+    mapping.mode or "n",
+    mapping.from,
+    mapping.to,
+    { noremap = mapping.noremap or true, silent = true, desc = mapping.desc }
+  )
 end
 
 -- delete lazynvim built-in keymaps

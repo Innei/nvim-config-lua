@@ -131,6 +131,15 @@ return {
       -- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
       opts.formatting.format = function(entry, item)
+        if item.kind == "Color" then
+          item = require("cmp-tailwind-colors").format(entry, item)
+
+          if item.kind ~= "Color" then
+            item.menu = nil
+            return item
+          end
+        end
+
         item.kind = icons[item.kind] or item.kind
         item.menu = nil
 
@@ -429,6 +438,22 @@ return {
         },
       }
       require("symbols-outline").setup(opts)
+    end,
+  },
+  {
+    "js-everts/cmp-tailwind-colors",
+    event = "LspAttach",
+    config = function()
+      require("cmp-tailwind-colors").setup({
+        enable_alpha = true, -- requires pumblend > 0.
+        format = function(itemColor)
+          return {
+            fg = itemColor,
+            bg = nil, -- or nil if you dont want a background color
+            text = "■", -- or use an icon
+          }
+        end,
+      })
     end,
   },
 }
