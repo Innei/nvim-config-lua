@@ -126,6 +126,29 @@ return {
     opts = function(_, opts)
       local luasnip = require("luasnip")
       local cmp = require("cmp")
+      opts.sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        {
+          name = "buffer",
+          option = {
+            get_bufnrs = function()
+              local bufs = {}
+              for _, win in ipairs(vim.api.nvim_list_wins()) do
+                local buf = vim.api.nvim_win_get_buf(win)
+                local buffer_byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+                if buffer_byte_size > 1024 * 100 then -- 100 kb max
+                  return {}
+                end
+                bufs[buf] = true
+              end
+              return vim.tbl_keys(bufs)
+            end,
+          },
+        },
+
+        { name = "path" },
+      })
 
       -- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       -- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
@@ -456,4 +479,5 @@ return {
       })
     end,
   },
+  { "roobert/tailwindcss-colorizer-cmp.nvim", enabled = false },
 }
