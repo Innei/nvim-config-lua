@@ -1,6 +1,8 @@
+local mode_all = { "n", "v", "i" }
+local mode_nv = { "n", "v" }
+local mode_v = { "v" }
 local mode_i = { "i" }
 local mode_ni = { "n", "i" }
-local mode_all = { "n", "v", "i" }
 
 local nmappings = {
   -- page scroll
@@ -417,9 +419,10 @@ if vim.g.neovide ~= nil then
   nmappings = vim.list_extend(nmappings, {
     {
       from = "<D-c>",
-      to = '"+y',
-      mode = "v",
+      to = '"+ygv<esc>',
+      mode = mode_v,
     },
+
     {
       from = "<D-v>",
       to = function()
