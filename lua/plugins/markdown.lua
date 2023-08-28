@@ -1,11 +1,11 @@
-vim.cmd([[
-let g:markdown_fenced_languages = ['html', 'python', 'lua', 'vim', 'typescript', 'javascript','tsx','jsx','typescriptreact','javascriptreact']
-]])
-
 return {
   {
     "iamcco/markdown-preview.nvim",
-    ft = { "markdown" },
+    cmd = {
+      "MarkdownPreview",
+      "MarkdownPreviewStop",
+      "MarkdownPreviewToggle",
+    },
     config = function()
       vim.fn["mkdp#util#install"]()
     end,
