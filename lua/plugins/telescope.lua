@@ -23,7 +23,7 @@ return {
       end, vim.tbl_extend("force", opts, { desc = "All files" }))
 
       local telescope_cmds = {
-        ["<leader>tf"] = "Telescope find_files find_command=rg,--ignore,--hidden,--files",
+        -- ["<leader>tf"] = "Telescope find_files find_command=rg,--ignore,--hidden,--files",
         ["<leader>tb"] = "Telescope buffers",
         ["<leader>th"] = "Telescope help_tags",
         ["<leader>tm"] = "Telescope marks",
@@ -149,5 +149,12 @@ return {
     config = function()
       require("telescope-all-recent").setup({})
     end,
+  },
+  {
+    "eckon/treesitter-current-functions",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
+    keys = {
+      { "<leader>tf", "<CMD>GetCurrentFunctions<CR>", desc = "Get current function" },
+    },
   },
 }

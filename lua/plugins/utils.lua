@@ -27,4 +27,21 @@ return {
     lazy = false,
     priority = 1001,
   },
+
+  {
+    "https://git.sr.ht/~reggie/licenses.nvim",
+    cmd = {
+      "LicenseInsert",
+      "LicenseFetch",
+      "LicenseUpdate",
+      "LicenseWrite",
+    },
+    config = function()
+      require("licenses").setup({
+        copyright_holder = "Innei",
+        email = "i@innei.in",
+        license = "MIT",
+      })
+    end,
+  },
 }

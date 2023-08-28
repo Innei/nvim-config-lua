@@ -5,7 +5,7 @@ return {
     {
       "<D-S-p>",
       function()
-        vim.cmd([[Telescope command_center]])
+        vim.cmd([[Telescope commander]])
       end,
       desc = "Command Center",
     },
@@ -13,24 +13,41 @@ return {
 
   lazy = true,
   config = function()
-    local telescope = require("telescope")
-    local command_center = require("command_center")
+    -- local telescope = require("telescope")
+    local command_center = require("commander")
 
-    local plugins = require("lazy").plugins()
+    -- local plugins = require("lazy").plugins()
 
-    for _, plugin in ipairs(plugins) do
-      if plugin.command_center then
-        -- only add for enabled plugins
-        -- copied from require('lazy.core.plugin').Spec:fix_disabled
-        local enabled = not (plugin.enabled == false or (type(plugin.enabled) == "function" and not plugin.enabled()))
-
-        if enabled then
-          command_center.add(plugin.command_center)
-        end
-      end
-    end
+    -- for _, plugin in ipairs(plugins) do
+    --   if plugin.command_center then
+    --     -- only add for enabled plugins
+    --     -- copied from require('lazy.core.plugin').Spec:fix_disabled
+    --     local enabled = not (plugin.enabled == false or (type(plugin.enabled) == "function" and not plugin.enabled()))
+    --
+    --     if enabled then
+    --       command_center.add(plugin.command_center)
+    --     end
+    --   end
+    -- end
 
     command_center.add({
+      {
+        desc = "Copy current file path (absolute)",
+        cmd = function()
+          local file_path = vim.api.nvim_buf_get_name(0)
+          vim.fn.system("echo -n" .. file_path .. " | pbcopy")
+        end,
+      },
+      {
+        desc = "Copy current file path & line (relative to cwd)",
+        cmd = function()
+          local file_path = vim.api.nvim_buf_get_name(0)
+          local relative_path = vim.fn.fnamemodify(file_path, ":~:." .. vim.fn.getcwd() .. ":.")
+          local current_line = vim.api.nvim_win_get_cursor(0)[1]
+          local file_path_and_line = relative_path .. "#" .. current_line
+          vim.fn.system("echo -n " .. file_path_and_line .. " | pbcopy")
+        end,
+      },
       {
         desc = "Restart lsp server",
         cmd = "<CMD>LspRestart<CR>",
@@ -68,24 +85,50 @@ return {
       --     end
       --   end,
       -- },
-    }, { mode = command_center.mode.ADD })
+    })
 
-    telescope.setup({
-      extensions = {
-        command_center = {
-          components = {
-            command_center.component.DESC,
-            command_center.component.KEYS,
-          },
-          -- sort_by = {
-          --   command_center.component.DESCRIPTION,
-          --   command_center.component.KEYS,
-          -- },
-          auto_replace_desc_with_cmd = false,
+    command_center.setup({
+      components = {
+        "DESC",
+        "KEYS",
+        "CAT",
+      },
+      sort_by = {
+        "DESC",
+        "KEYS",
+        "CAT",
+        "CMD",
+      },
+      -- Change the separator used to separate each component
+      separator = " ",
+
+      -- When set to true,
+      -- The desc component will be populated with cmd if desc is empty or missing.
+      auto_replace_desc_with_cmd = true,
+
+      -- Default title of the prompt
+      prompt_title = "Commander",
+      integration = {
+        telescope = {
+          enable = true,
+        },
+        lazy = {
+          enable = true,
         },
       },
     })
+    -- telescope.setup({
+    --   extensions = {
+    --     command_center = {
+    --       components = {
+    --         command_center.component.DESC,
+    --         command_center.component.KEYS,
+    --       },
+    --       auto_replace_desc_with_cmd = false,
+    --     },
+    --   },
+    -- })
 
-    telescope.load_extension("command_center")
+    -- telescope.load_extension("command_center")
   end,
 }
