@@ -21,6 +21,13 @@ return {
         end,
         desc = "Delete buffer",
       },
+      {
+        "<D-w>",
+        function()
+          require("mini.bufremove").delete(nil, false)
+        end,
+        desc = "Delete buffer",
+      },
 
       {
         "<leader>bs",

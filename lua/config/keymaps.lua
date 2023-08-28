@@ -1,8 +1,7 @@
--- vim.g.mapleader = " "
-local mode_nv = { "n", "v" }
-local mode_v = { "v" }
 local mode_i = { "i" }
 local mode_ni = { "n", "i" }
+local mode_all = { "n", "v", "i" }
+
 local nmappings = {
   -- page scroll
   -- {
@@ -255,6 +254,21 @@ if vim.g.vscode == nil then
       to = '"+dd',
     },
     {
+
+      from = "<D-s>",
+      to = function()
+        vim.cmd([[w]])
+      end,
+      mode = mode_ni,
+    },
+    {
+      from = "<D-n>",
+      to = function()
+        vim.cmd([[new]])
+      end,
+      mode = mode_ni,
+    },
+    {
       from = "<M-c>",
       to = '"+ygv<esc>',
       mode = mode_v,
@@ -377,6 +391,14 @@ if vim.g.vscode == nil then
     },
 
     {
+      from = "<S-D-f>",
+      to = function()
+        -- format code
+        vim.lsp.buf.format()
+      end,
+      mode = mode_ni,
+    },
+    {
       from = "<M-D-s>",
       to = function()
         vim.cmd([[wa]])
@@ -387,6 +409,23 @@ if vim.g.vscode == nil then
       from = "<D-backspace>",
       to = "<esc>cc",
       mode = mode_i,
+    },
+  })
+end
+
+if vim.g.neovide ~= nil then
+  nmappings = vim.list_extend(nmappings, {
+    {
+      from = "<D-c>",
+      to = '"+y',
+      mode = "v",
+    },
+    {
+      from = "<D-v>",
+      to = function()
+        vim.cmd([[normal! "+p]])
+      end,
+      mode = mode_all,
     },
   })
 end

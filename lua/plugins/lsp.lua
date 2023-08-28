@@ -483,6 +483,7 @@ return {
   {
     "davidosomething/format-ts-errors.nvim",
     event = "LspAttach",
+    enabled = false,
     config = function()
       local lspconfig = require("lspconfig")
       lspconfig.tsserver.setup({

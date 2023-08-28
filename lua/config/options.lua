@@ -9,7 +9,10 @@ vim.api.nvim_set_hl(0, "ICursorColor", {
   fg = "#000000",
 })
 
--- opt.clipboard = "unnamedplus"
+if vim.g.neovide ~= nil then
+  opt.clipboard = "unnamedplus"
+end
+
 opt.wrap = true
 opt.clipboard = ""
 opt.laststatus = 0
