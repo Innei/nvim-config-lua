@@ -244,7 +244,7 @@ if vim.g.vscode == nil then
   nmappings = vim.list_extend(nmappings, {
     {
       from = "<D-x>",
-      to = '"+d',
+      to = '"+di',
       mode = mode_v,
     },
     {
@@ -415,20 +415,41 @@ if vim.g.vscode == nil then
   })
 end
 
-if vim.g.neovide ~= nil then
-  nmappings = vim.list_extend(nmappings, {
-    {
-      from = "<D-c>",
-      to = '"+ygv<esc>',
-      mode = mode_v,
-    },
+if vim.g.neovide then
+  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
+  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
+  vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
+  vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
+  vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
+  vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
 
+  -- Allow clipboard copy paste in neovim
+  vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+  nmappings = vim.list_extend(nmappings, {
+    -- {
+    --   from = "<D-c>",
+    --   to = '"+ygv<esc>',
+    --   mode = mode_v,
+    -- },
+    --
+    -- {
+    --   from = "<D-v>",
+    --   to = function()
+    --     vim.cmd([[normal! "+p]])
+    --   end,
+    --   mode = mode_all,
+    -- },
     {
-      from = "<D-v>",
+      -- @see https://github.com/neovide/neovide/issues/1237
+      from = "<D-f>",
       to = function()
-        vim.cmd([[normal! "+p]])
+        -- format code
+        vim.lsp.buf.format()
       end,
-      mode = mode_all,
+      mode = mode_ni,
     },
   })
 end

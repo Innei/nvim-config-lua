@@ -22,11 +22,9 @@ return {
   },
   {
     "cshuaimin/ssr.nvim",
-    event = "VeryLazy",
     keys = {
       {
-
-        "<D-f>",
+        "<M-f>",
         function()
           require("ssr").open()
         end,
