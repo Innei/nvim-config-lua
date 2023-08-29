@@ -7,7 +7,7 @@ return {
       {
         "R",
         function()
-          vim.cmd([[Telescope file_browser]])
+          vim.cmd([[Telescope file_browser path=%:p:h select_buffer=true]])
         end,
       },
       desc = "Telescope File Browser",
