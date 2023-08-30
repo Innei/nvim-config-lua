@@ -23,6 +23,9 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "prisma",
         "dockerfile",
+        "svelte",
+        "swift",
+        "vue",
       })
     end,
   },
