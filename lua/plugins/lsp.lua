@@ -275,10 +275,17 @@ return {
           virtual_text = true,
           enable = true,
         },
+        symbols_in_winbar = { enable = true },
+        implement = {
+          enable = true,
+          sign = false,
+          virtual_text = true,
+        },
       })
-      vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc")
-      vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action")
-      vim.keymap.set("n", "<leader>ol", "<cmd>Lspsaga outline")
+      -- vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+      -- vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+      vim.keymap.set("n", "<leader>ol", "<cmd>Lspsaga outline<CR>")
+      vim.keymap.set("n", "gpd", "<cmd>Lspsaga finder<CR>")
     end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- optional
@@ -296,6 +303,7 @@ return {
   {
     "dnlhc/glance.nvim",
     event = "LspAttach",
+    enabled = false,
     config = function()
       require("glance").setup({
         -- your configuration
