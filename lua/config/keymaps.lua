@@ -260,6 +260,7 @@ if vim.g.vscode == nil then
       from = "<D-s>",
       to = function()
         vim.cmd([[w]])
+        vim.cmd([[stopinsert]])
       end,
       mode = mode_ni,
     },
@@ -271,7 +272,7 @@ if vim.g.vscode == nil then
       mode = mode_ni,
     },
     {
-      from = "<M-c>",
+      from = "<D-c>",
       to = '"+ygv<esc>',
       mode = mode_v,
     },
@@ -295,7 +296,7 @@ if vim.g.vscode == nil then
       to = "<C-w>",
       mode = mode_i,
     },
-    { from = "<C-a>", to = "gg<s-v>G" },
+    { from = "<D-a>", to = "gg<s-v>G", mode = mode_ni },
     {
       from = "<M-left>",
       to = "<ESC>bi",
@@ -416,8 +417,6 @@ if vim.g.vscode == nil then
 end
 
 if vim.g.neovide then
-  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
-  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
   vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
   vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
   vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
@@ -429,19 +428,6 @@ if vim.g.neovide then
   vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
   nmappings = vim.list_extend(nmappings, {
-    -- {
-    --   from = "<D-c>",
-    --   to = '"+ygv<esc>',
-    --   mode = mode_v,
-    -- },
-    --
-    -- {
-    --   from = "<D-v>",
-    --   to = function()
-    --     vim.cmd([[normal! "+p]])
-    --   end,
-    --   mode = mode_all,
-    -- },
     {
       -- @see https://github.com/neovide/neovide/issues/1237
       from = "<D-f>",
@@ -469,10 +455,3 @@ vim.keymap.del({ "n", "x" }, "k")
 
 vim.api.nvim_set_keymap("n", "j", "<Plug>(accelerated_jk_gj)", {})
 vim.api.nvim_set_keymap("n", "k", "<Plug>(accelerated_jk_gk)", {})
-
-if vim.g.vscode == nil then
-  -- remap <c-b> to toggle neotree
-
-  vim.keymap.del({ "n" }, "<c-b>")
-  vim.cmd([[nnoremap <C-b> :Neotree toggle<cr>]])
-end

@@ -53,7 +53,7 @@ return {
       },
     },
     opts = function(_, opts)
-      vim.keymap.set({ "n", "i" }, "<C-b>", function()
+      vim.keymap.set({ "n", "i" }, "<D-b>", function()
         vim.cmd([[Neotree toggle]])
       end, { silent = true })
       opts.sync_root_with_cwd = true
