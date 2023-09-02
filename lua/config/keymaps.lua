@@ -296,7 +296,7 @@ if vim.g.vscode == nil then
       to = "<C-w>",
       mode = mode_i,
     },
-    { from = "<D-a>", to = "gg<s-v>G", mode = mode_ni },
+    { from = "<D-a>", to = "<ESC>gg<s-v>G", mode = mode_ni },
     {
       from = "<M-left>",
       to = "<ESC>bi",
