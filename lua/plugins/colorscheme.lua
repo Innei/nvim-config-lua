@@ -5,9 +5,9 @@ return {
     priority = 1000,
     config = function()
       local transparent_background = true
-      if vim.g.neovide then
-        transparent_background = false
-      end
+      -- if vim.g.neovide then
+      --   transparent_background = false
+      -- end
       require("catppuccin").setup({
         flavour = "mocha", -- latte, frappe, macchiato, mocha
         background = { -- :h background

@@ -37,6 +37,6 @@ if vim.g.neovide then
   -- vim.g.neovide_background_color = "#0f1117" .. alpha()
   vim.g.neovide_cursor_animate_in_insert_mode = true
   vim.g.neovide_input_use_logo = 1
-  vim.g.neovide_floating_blur_amount_x = 2.0
-  vim.g.neovide_floating_blur_amount_y = 2.0
+  vim.g.neovide_floating_blur_amount_x = 12.0
+  vim.g.neovide_floating_blur_amount_y = 12.0
 end

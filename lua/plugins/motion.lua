@@ -9,7 +9,10 @@ return {
     ---@type Flash.Config
     opts = {
       search = {
-        mode = "fuzzy",
+        -- mode = "fuzzy",
+      },
+      label = {
+        uppercase = false,
       },
       modes = {
 

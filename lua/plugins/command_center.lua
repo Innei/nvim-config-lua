@@ -49,7 +49,7 @@ return {
         end,
       },
       {
-        desc = "Restart lsp server",
+        desc = "Restart LSP server",
         cmd = "<CMD>LspRestart<CR>",
       },
       {
@@ -73,6 +73,12 @@ return {
         cmd = function()
           vim.cmd([[TSDisable highlight]])
           vim.cmd([[TSEnable highlight]])
+        end,
+      },
+      {
+        desc = "Open the specified file (relative to cwd)",
+        cmd = function()
+          require("plugin.open-file").open_file()
         end,
       },
       -- {
