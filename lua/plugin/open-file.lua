@@ -62,6 +62,10 @@ function M.jump()
   local rel_path = vim.api.nvim_buf_get_lines(_temp_buf, 0, -1, false)[1]
   local rel_path_without_pos = string.gsub(rel_path, "[#:]%d+[#:]?%d*$", "")
   local abs_path = vim.fn.getcwd() .. "/" .. rel_path_without_pos
+  local is_invalid_path = vim.fn.filereadable(abs_path) == 0
+  if is_invalid_path then
+    return vim.notify("路径不存在，请重试", vim.log.levels.ERROR)
+  end
   vim.api.nvim_command("edit " .. abs_path)
 
   local target_line, target_col = rel_path:match("[#:](%d+)[#:](%d+)$")

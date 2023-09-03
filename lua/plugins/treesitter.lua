@@ -14,7 +14,7 @@ return {
       }
 
       local swap_ternary = require("plugin.swap_ternary")
-      vim.keymap.set("n", "<leader>sX", swap_ternary.swap_ternary, { noremap = true })
+      vim.keymap.set("n", "<leader>sX", swap_ternary.replace, { noremap = true, desc = "Swap Ternary" })
 
       opts.context_commentstring = {
         enable_autocmd = false,
@@ -107,6 +107,7 @@ return {
   {
     "sustech-data/wildfire.nvim",
     event = "VeryLazy",
+    vscode = true,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("wildfire").setup({
