@@ -2,11 +2,11 @@ return {
   {
     "mg979/vim-visual-multi",
     event = "VeryLazy",
-    config = function()
+    init = function()
       vim.cmd([[
   let g:VM_maps                       = {}
-  let g:VM_maps['Find Under']         = '<D-d>'
-  let g:VM_maps['Find Subword Under'] = '<D-d>'
+  let g:VM_maps['Find Under']         = '<C-d>'
+  let g:VM_maps['Find Subword Under'] = '<C-d>'
   let g:VM_maps['Find Next']          = 'n'
   let g:VM_maps['Find Prev']          = 'p'
   let g:VM_maps['Remove Region']      = '<backspace>'
