@@ -2,11 +2,16 @@ return {
   {
     "koenverburg/peepsight.nvim",
     cmd = { "PeepsightEnable", "PeepsightDisable" },
-    keys = { {
-      "<leader>Zp",
-      "<cmd>PeepsightEnable<cr>",
-      desc = "PeepsightEnable",
-    } },
+    keys = {
+      {
+        "zp",
+        function()
+          require("peepsight").toggle()
+        end,
+        desc = "PeepsightToggle",
+      },
+    },
+    event = "BufReadPost",
     config = function()
       require("peepsight").setup({
         -- Lua
