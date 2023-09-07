@@ -146,7 +146,7 @@ local nmappings = {
     mode = mode_i,
   },
   --
-  { from = "<leader>rc", to = ":e ~/.config/nvim/init.lua<CR>" },
+  -- { from = "<leader>rc", to = ":e ~/.config/nvim/init.lua<CR>" },
 
   -- map , .
   {
