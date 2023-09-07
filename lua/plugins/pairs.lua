@@ -1,7 +1,7 @@
 return {
   {
     "m4xshen/autoclose.nvim",
-    event = "BufReadPost",
+    event = "InsertEnter",
     enabled = false,
     config = function()
       require("autoclose").setup({
@@ -37,7 +37,7 @@ return {
   },
   {
     "windwp/nvim-autopairs",
-    event = "VeryLazy",
+    event = "InsertEnter",
     opts = {}, -- this is equalent to setup({}) function
     enabled = true,
   },
@@ -60,7 +60,7 @@ return {
 
   {
     "andymass/vim-matchup",
-    event = "BufEnter",
+    event = "VeryLazy",
     enabled = false,
     config = function()
       -- may set any options here
