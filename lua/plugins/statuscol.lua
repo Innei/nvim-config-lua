@@ -11,15 +11,15 @@ return {
         segments = {
           {
             sign = {
-              name = { "smoothcursor_.*" },
-              auto = true,
+              name = { "smoothcursor*" },
+              auto = false,
               wrap = true,
               maxwidth = 1,
               colwidth = 1,
             },
           },
           { text = { " " } },
-          { text = { builtin.foldfunc }, click = "v:lua.ScFa", auto = true },
+          { text = { builtin.foldfunc }, click = "v:lua.ScFa", auto = false },
           {
             sign = { name = { "Diagnostic" }, maxwidth = 1, colwidth = 1, auto = true },
             click = "v:lua.ScSa",
@@ -37,7 +37,7 @@ return {
           {
             sign = {
               name = { "GitSigns*" },
-              auto = true,
+              auto = false,
             },
             click = "v:lua.ScSa",
           },
