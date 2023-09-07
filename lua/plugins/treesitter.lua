@@ -13,9 +13,6 @@ return {
         },
       }
 
-      local swap_ternary = require("plugin.swap_ternary")
-      vim.keymap.set("n", "<leader>sX", swap_ternary.replace, { noremap = true, desc = "Swap Ternary" })
-
       opts.context_commentstring = {
         enable_autocmd = false,
       }
@@ -28,6 +25,19 @@ return {
         "vue",
       })
     end,
+  },
+  {
+    "xlboy/swap-ternary.nvim",
+    keys = {
+      {
+        "<leader>sX",
+        function()
+          require("swap-ternary.controller").start()
+        end,
+        desc = "Swap Ternary",
+      },
+    },
+    config = function() end,
   },
   {
     "nvim-treesitter/playground",
