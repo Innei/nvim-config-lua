@@ -30,6 +30,8 @@ M.exclude_ft_table = {
   DressingInput = true,
   NeogitStatus = true,
   ssr = true,
+
+  NeogitCommitMessage = true,
 }
 
 local exclude_ft_list = {}
