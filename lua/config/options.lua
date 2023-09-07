@@ -13,9 +13,10 @@ if vim.g.neovide ~= nil then
   opt.clipboard = "unnamedplus"
 end
 
+opt.signcolumn = "yes:1"
 opt.wrap = true
 opt.clipboard = ""
-opt.laststatus = 0
+-- opt.laststatus = 0
 opt.spelllang = "en,cjk"
 -- vim.opt.spell = true
 opt.spelloptions = "camel"

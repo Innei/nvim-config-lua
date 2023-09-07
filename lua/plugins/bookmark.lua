@@ -6,7 +6,6 @@ return {
       "nvim-telescope/telescope.nvim",
     },
     config = function()
-      vim.opt.signcolumn = "yes:2"
       require("bookmarks").setup({
         save_file = vim.fn.expand("$HOME/.local/share/nvim/bookmarks"), -- bookmarks save file path
         keywords = {
