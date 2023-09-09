@@ -56,7 +56,7 @@ return {
       vim.keymap.set({ "n", "i" }, "<D-b>", function()
         vim.cmd([[Neotree toggle]])
       end, { silent = true })
-      opts.sync_root_with_cwd = true
+      opts.sync_root_with_cwd = false
       opts.respect_buf_cwd = true
       opts.update_focused_file = {
         enable = true,
