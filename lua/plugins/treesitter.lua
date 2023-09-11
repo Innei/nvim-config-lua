@@ -32,7 +32,7 @@ return {
       {
         "<leader>sX",
         function()
-          require("swap-ternary.controller").start()
+          require("swap-ternary.controller").swap()
         end,
         desc = "Swap Ternary",
       },
