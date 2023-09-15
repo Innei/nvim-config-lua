@@ -40,7 +40,7 @@ return {
           treesitter = true,
           treesitter_context = true,
           mini = true,
-          flash = true,
+          flash = false,
           rainbow_delimiters = false,
           barbar = false,
           dropbar = true,
