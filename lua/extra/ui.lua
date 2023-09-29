@@ -87,7 +87,7 @@ return {
     },
   },
   {
-    "null-ls.nvim",
+    "none-ls.nvim",
     opts = {
       border = float.border,
     },
