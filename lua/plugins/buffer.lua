@@ -4,9 +4,21 @@ return {
     event = "VeryLazy",
     enabled = true,
     keys = {
-      { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
-      { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
-      { "<leader>bq", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete other buffers" },
+      {
+        "<leader>bq",
+        function()
+          local buffers = vim.fn.getbufinfo({ buflisted = true })
+          local changed_buffers = vim.tbl_filter(function(buf)
+            return buf.changed == 1
+          end, buffers)
+          if #changed_buffers == 0 then
+            vim.cmd([[BufferLineCloseOthers]])
+          else
+            vim.notify("There are unsaved buffers", vim.log.levels.WARN)
+          end
+        end,
+        desc = "Delete other buffers",
+      },
       {
         "Q",
         function()

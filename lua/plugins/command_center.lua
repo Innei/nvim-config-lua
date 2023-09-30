@@ -36,7 +36,10 @@ return {
         },
         {
           desc = "Restart LSP server",
-          cmd = "<CMD>LspRestart<CR>",
+          cmd = function()
+            vim.cmd([[LSPStop]])
+            vim.cmd([[LSPStart]])
+          end,
         },
         {
           desc = "Reload Buffer",
