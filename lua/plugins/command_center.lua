@@ -37,8 +37,8 @@ return {
         {
           desc = "Restart LSP server",
           cmd = function()
-            vim.cmd([[LSPStop]])
-            vim.cmd([[LSPStart]])
+            vim.cmd([[LspStop]])
+            vim.cmd([[LspStart]])
           end,
         },
         {
