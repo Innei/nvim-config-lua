@@ -25,7 +25,7 @@ return {
         "function_declaration",
         "generator_function_declaration",
       })
-      require("peepsight").enable()
+      -- require("peepsight").enable()
     end,
   },
 }

@@ -6,7 +6,6 @@ return {
   config = function()
     require("textcase").setup({})
     require("telescope").load_extension("textcase")
-
     vim.api.nvim_set_keymap("n", "ga.", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope" })
     vim.api.nvim_set_keymap("v", "ga.", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope" })
     vim.api.nvim_set_keymap(
