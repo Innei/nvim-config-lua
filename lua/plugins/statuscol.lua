@@ -36,11 +36,20 @@ return {
           },
           {
             sign = {
-              name = { "GitSigns*" },
+              name = { ".*" },
+              namespace = { "gitsigns_extmark_signs_" },
+              text = { ".*" },
               auto = false,
             },
             click = "v:lua.ScSa",
           },
+          -- {
+          --   sign = {
+          --     name = { "GitSigns*" },
+          --     auto = false,
+          --   },
+          --   click = "v:lua.ScSa",
+          -- },
         },
       })
     end,
