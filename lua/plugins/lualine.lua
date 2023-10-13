@@ -35,21 +35,6 @@ return {
               local ok, clients = pcall(vim.lsp.get_active_clients, { name = "copilot", bufnr = 0 })
               return ok and #clients > 0
             end,
-            color = function()
-              if not package.loaded["copilot"] then
-                return
-              end
-              local Util = require("lazyvim.util")
-              local colors = {
-                [""] = Util.fg("Special"),
-                ["Normal"] = Util.fg("Special"),
-                ["Warning"] = Util.fg("DiagnosticError"),
-                ["InProgress"] = Util.fg("DiagnosticWarn"),
-              }
-
-              local status = require("copilot.api").status.data
-              return colors[status.status] or colors[""]
-            end,
           },
         },
         lualine_y = { "progress" },

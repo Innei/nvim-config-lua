@@ -193,4 +193,16 @@ return {
       { "<leader>tf", "<CMD>GetCurrentFunctions<CR>", desc = "Get current function" },
     },
   },
+
+  {
+    "piersolenski/telescope-import.nvim",
+    requires = "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    keys = {
+      { "<leader>ti", "<CMD>lua require('telescope').extensions.import.import()<CR>", desc = "Telescope Import" },
+    },
+    config = function()
+      require("telescope").load_extension("import")
+    end,
+  },
 }

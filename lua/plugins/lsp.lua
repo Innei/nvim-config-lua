@@ -131,8 +131,9 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
+    enabled = true,
     opts = function(_, opts)
-      local nls = require('null-ls')
+      local nls = require("null-ls")
 
       opts.root_dir = require("null-ls.utils").root_pattern(".git")
 
