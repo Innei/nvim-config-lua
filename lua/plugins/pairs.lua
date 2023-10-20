@@ -37,7 +37,7 @@ return {
   },
   {
     "windwp/nvim-autopairs",
-    event = "InsertEnter",
+    event = "LazyFile",
     opts = {}, -- this is equalent to setup({}) function
     enabled = true,
   },
