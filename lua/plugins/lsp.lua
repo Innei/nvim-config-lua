@@ -92,7 +92,7 @@ return {
         root_dir = function(fname)
           local util = require("lspconfig.util")
           return util.root_pattern(".git")(fname)
-              or util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(fname)
+            or util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(fname)
         end,
       })
 
@@ -131,7 +131,7 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
-    enabled = true,
+    enabled = false,
     opts = function(_, opts)
       local nls = require("null-ls")
 
@@ -167,24 +167,16 @@ return {
           virtual_text = true,
         },
       })
-      -- vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
-      -- vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>")
-      vim.keymap.set("n", "<leader>ol", "<cmd>Lspsaga outline<CR>")
-      vim.keymap.set("n", "gpd", "<cmd>Lspsaga finder<CR>")
+      vim.keymap.set("n", "T", "<cmd>Lspsaga outline<CR>")
+      vim.keymap.set("n", "gF", "<cmd>Lspsaga finder<CR>")
     end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- optional
-      "nvim-tree/nvim-web-devicons",     -- optional
+      "nvim-tree/nvim-web-devicons", -- optional
     },
   },
 
   -- configure lsp easy
-  {
-    "tamago324/nlsp-settings.nvim",
-    enabled = true,
-    cmd = "LspSettings",
-    opts = {},
-  },
   {
     "dnlhc/glance.nvim",
     event = "LspAttach",
@@ -207,23 +199,23 @@ return {
     enabled = false,
     config = function()
       require("goto-preview").setup({
-        width = 120,                                -- Width of the floating window
-        height = 15,                                -- Height of the floating window
+        width = 120, -- Width of the floating window
+        height = 15, -- Height of the floating window
         border = require("util.opts").float.border, -- Border characters of the floating window
-        default_mappings = false,                   -- Bind default mappings
-        debug = false,                              -- Print debug information
-        resizing_mappings = false,                  -- Binds arrow keys to resizing the floating window.
-        post_open_hook = nil,                       -- A function taking two arguments, a buffer and a window to be ran as a hook.
-        post_close_hook = nil,                      -- A function taking two arguments, a buffer and a window to be ran as a hook.
-        references = {                              -- Configure the telescope UI for slowing the references cycling window.
+        default_mappings = false, -- Bind default mappings
+        debug = false, -- Print debug information
+        resizing_mappings = false, -- Binds arrow keys to resizing the floating window.
+        post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
+        post_close_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
+        references = { -- Configure the telescope UI for slowing the references cycling window.
           telescope = require("telescope.themes").get_dropdown({ hide_preview = false }),
         },
         -- These two configs can also be passed down to the goto-preview definition and implementation calls for one off "peak" functionality.
-        focus_on_open = true,                                        -- Focus the floating window when opening it.
-        dismiss_on_move = false,                                     -- Dismiss the floating window when moving the cursor.
-        force_close = true,                                          -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
-        bufhidden = "wipe",                                          -- the bufhidden option to set on the floating window. See :h bufhidden
-        stack_floating_preview_windows = true,                       -- Whether to nest floating windows
+        focus_on_open = true, -- Focus the floating window when opening it.
+        dismiss_on_move = false, -- Dismiss the floating window when moving the cursor.
+        force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
+        bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
+        stack_floating_preview_windows = true, -- Whether to nest floating windows
         preview_window_title = { enable = true, position = "left" }, -- Whether to set the preview window title as the filename
       })
 
@@ -260,31 +252,8 @@ return {
   },
 
   {
-    "mhartington/formatter.nvim",
-    cmd = "Format",
-    config = function()
-      require("formatter").setup({
-        filetype = {
-          zsh = {
-            function()
-              return {
-                exe = "shfmt",
-                args = { "-i", "2", "-ci" },
-                stdin = true,
-              }
-            end,
-          },
-        },
-        ["*"] = {
-          -- "formatter.filetypes.any" defines default configurations for any
-          -- filetype
-          require("formatter.filetypes.any").remove_trailing_whitespace,
-        },
-      })
-    end,
-  },
-  {
     "simrat39/symbols-outline.nvim",
+    enabled = false,
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose" },
     keys = {
       { "<leader>T", "<cmd>SymbolsOutline<CR>", "SymbolsOutline" },
