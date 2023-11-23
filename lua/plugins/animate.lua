@@ -40,6 +40,8 @@ return {
           },
           tail = { cursor = nil, texthl = "SmoothCursor" },
         },
+        disable_float_win = true,
+
         disabled_filetypes = require("util.ft").exclude_ft, -- this option will be skipped if enabled_filetypes is set. example: { "TelescopePrompt", "NvimTree" }
       })
     end,
