@@ -29,6 +29,10 @@ opt.foldlevelstart = 99
 opt.guicursor =
   "n:block,i-ci-ve-v-c:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-ICursorColor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
+-- Undercurl
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])
+
 if vim.g.neovide then
   vim.g.neovide_padding_right = 5
   vim.g.neovide_padding_left = 5
