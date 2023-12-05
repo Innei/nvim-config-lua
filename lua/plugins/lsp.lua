@@ -129,21 +129,41 @@ return {
       -- table.insert(opts.ensure_installed, "alex")
     end,
   },
+
   {
     "nvimtools/none-ls.nvim",
     enabled = false,
+    dependencies = "davidmh/cspell.nvim",
     opts = function(_, opts)
-      local nls = require("null-ls")
+      local cspell = require("cspell")
+      local cspell_config = {
+        diagnostics_postprocess = function(diagnostic)
+          diagnostic.severity = vim.diagnostic.severity["HINT"] -- ERROR, WARN, INFO, HINT
+        end,
+        config = {
+          -- find_json = function(_)
+          --   return vim.fn.expand("~/.config/nvim/cspell.json")
+          --   -- return "/home/taiga/.config/nvim/cspell.json"
+          -- end,
+          on_success = function(cspell_config_file_path, params, action_name)
+            if action_name == "add_to_json" then
+              os.execute(
+                string.format(
+                  "cat %s | jq -S '.words |= sort' | tee %s > /dev/null",
+                  cspell_config_file_path,
+                  cspell_config_file_path
+                )
+              )
+            end
+          end,
+        },
+      }
 
       opts.root_dir = require("null-ls.utils").root_pattern(".git")
 
       opts.sources = vim.list_extend(opts.sources, {
-        nls.builtins.code_actions.cspell,
-        nls.builtins.diagnostics.cspell.with({
-          diagnostics_postprocess = function(diagnostic)
-            diagnostic.severity = vim.diagnostic.severity.HINT
-          end,
-        }),
+        cspell.diagnostics.with(cspell_config),
+        cspell.code_actions.with(cspell_config),
       })
     end,
   },
