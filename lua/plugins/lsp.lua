@@ -68,7 +68,7 @@ return {
         group = "lsp_diagnostics_hold",
       })
 
-      opts.diagnostics = {
+      opts.diagnostics = vim.tbl_extend("force", opts.diagnostics, {
         underline = true,
         update_in_insert = false,
         virtual_text = false,
@@ -81,8 +81,8 @@ return {
         --   -- prefix = "icons",
         -- },
         severity_sort = true,
-        signs = false,
-      }
+        -- signs = false,
+      })
 
       opts.inlay_hints = {
         enabled = true,
@@ -347,7 +347,7 @@ return {
   },
   {
     "js-everts/cmp-tailwind-colors",
-    event = "LspAttach",
+    event = "VeryLazy",
     config = function()
       require("cmp-tailwind-colors").setup({
         enable_alpha = true, -- requires pumblend > 0.
