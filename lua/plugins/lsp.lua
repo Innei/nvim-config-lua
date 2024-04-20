@@ -1,38 +1,38 @@
-local icons = {
-  Keyword = "󰌋",
-  Operator = "󰆕",
-
-  Text = "",
-  Value = "󰎠",
-  Constant = "󰏿",
-
-  Method = "",
-  Function = "󰊕",
-  Constructor = "",
-
-  Class = "",
-  Interface = "",
-  Module = "",
-
-  Variable = "",
-  Property = "󰜢",
-  Field = "󰜢",
-
-  Struct = "󰙅",
-  Enum = "",
-  EnumMember = "",
-
-  Snippet = "",
-
-  File = "",
-  Folder = "",
-
-  Reference = "󰈇",
-  Event = "",
-  Color = "",
-  Unit = "󰑭",
-  TypeParameter = "",
-}
+-- local icons = {
+--   Keyword = "󰌋",
+--   Operator = "󰆕",
+--
+--   Text = "",
+--   Value = "󰎠",
+--   Constant = "󰏿",
+--
+--   Method = "",
+--   Function = "󰊕",
+--   Constructor = "",
+--
+--   Class = "",
+--   Interface = "",
+--   Module = "",
+--
+--   Variable = "",
+--   Property = "󰜢",
+--   Field = "󰜢",
+--
+--   Struct = "󰙅",
+--   Enum = "",
+--   EnumMember = "",
+--
+--   Snippet = "",
+--
+--   File = "",
+--   Folder = "",
+--
+--   Reference = "󰈇",
+--   Event = "",
+--   Color = "",
+--   Unit = "󰑭",
+--   TypeParameter = "",
+-- }
 
 return {
   {
@@ -70,7 +70,7 @@ return {
 
       opts.diagnostics = vim.tbl_extend("force", opts.diagnostics, {
         underline = true,
-        update_in_insert = false,
+        update_in_insert = true,
         virtual_text = false,
         -- virtual_text = {
         --   spacing = 4,
@@ -81,12 +81,13 @@ return {
         --   -- prefix = "icons",
         -- },
         severity_sort = true,
-        -- signs = false,
+        signs = false,
       })
 
-      opts.inlay_hints = {
-        enabled = true,
-      }
+      -- vim.diagnostic.config({ signs = false })
+      -- opts.inlay_hints = {
+      --   enabled = false,
+      -- }
 
       opts.servers.tsserver = vim.tbl_extend("force", opts.servers.tsserver, {
         root_dir = function(fname)

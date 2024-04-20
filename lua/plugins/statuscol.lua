@@ -2,6 +2,7 @@ return {
   {
     "luukvbaal/statuscol.nvim",
     lazy = false,
+    enabled = true,
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
@@ -18,10 +19,10 @@ return {
               colwidth = 1,
             },
           },
-          { text = { " " } },
           { text = { builtin.foldfunc }, click = "v:lua.ScFa", auto = false },
+          { text = { " " } },
           {
-            sign = { name = { "Diagnostic" }, maxwidth = 1, colwidth = 1, auto = true },
+            sign = { name = { "Diagnostic" }, maxwidth = 1, colwidth = 0, auto = true },
             click = "v:lua.ScSa",
           },
           {
