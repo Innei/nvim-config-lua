@@ -49,7 +49,9 @@ nnoremap - <C-x>
 
 " rename a word
 nnoremap cw ciw
-
+nnoremap J 7j
+nnoremap K 7k
+nnoremap <leader>jo J
 " ===
 " === Buffer manage
 " ===
